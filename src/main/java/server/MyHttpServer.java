@@ -4,17 +4,24 @@ import com.sun.net.httpserver.*;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.net.InetSocketAddress;
 import java.util.logging.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class MyHttpServer {
-    private static final String PATH = "/home/mainkaif/stn/stn-videoserver";
+    private String path;
+
     private static final Logger LOGGER = Logger.getLogger(MyHttpServer.class.getName());
 
-    public MyHttpServer() throws IOException {
-        Handler loggerHandler = new FileHandler(PATH + "/logs/log", true);
+    public MyHttpServer(String path) throws IOException {
+        this.path = path;
+
+        new File(path + "/archive").mkdirs();
+        new File(path + "/logs").mkdirs();
+
+        Handler loggerHandler = new FileHandler(path + "/logs/log", true);
         loggerHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(loggerHandler);
 
@@ -35,17 +42,14 @@ public class MyHttpServer {
                     String cameras = numberOfCameras();
                     String clients = numberOfClients();
 
-                    BufferedReader br = new BufferedReader(new FileReader(PATH + "/html/admin.html"));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        line = line.replace("$cpu", cpuLoad).replace("$freespace", freeSpace)
+                    InputStream file = ClassLoader.getSystemResourceAsStream("admin.html");
+                    String string = new String(file.readAllBytes(), "UTF-8");
+
+                    string = string.replace("$cpu", cpuLoad).replace("$freespace", freeSpace)
                                 .replace("$archivesize", archiveSize).replace("$cameras", cameras)
                                 .replace("$clients", clients);
-                        sb.append(line);
-                    }
-                    br.close();
-                    byte[] bytes = sb.toString().getBytes();
+
+                    byte[] bytes = string.getBytes();
                     httpExchange.sendResponseHeaders(200, bytes.length);
                     OutputStream os = httpExchange.getResponseBody();
                     os.write(bytes);
@@ -62,9 +66,9 @@ public class MyHttpServer {
             public void handle(HttpExchange httpExchange) {
                 httpExchange.getResponseHeaders().add("Content-Type", "application/zip");
                 try {
-                    File file = new File(PATH + "/logs/log");
+                    File file = new File(path + "/logs/log");
                     FileInputStream in = new FileInputStream(file);
-                    File zipFile = new File(PATH + "/logs/log.zip");
+                    File zipFile = new File(path + "/logs/log.zip");
                     zipFile.createNewFile();
                     ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFile));
                     out.putNextEntry(new ZipEntry("log"));
@@ -77,7 +81,7 @@ public class MyHttpServer {
                     out.close();
                     in.close();
 
-                    FileInputStream fileInputStream = new FileInputStream(PATH + "/logs/log.zip");
+                    FileInputStream fileInputStream = new FileInputStream(path + "/logs/log.zip");
                     byte[] bytes = fileInputStream.readAllBytes();
                     zipFile.delete();
 
@@ -91,15 +95,6 @@ public class MyHttpServer {
                 }
             }
         });
-//        context.setAuthenticator(new Authenticator() {
-//            @Override
-//            public Result authenticate(HttpExchange httpExchange) {
-//                if ("/forbidden".equals(httpExchange.getRequestURI().toString()))
-//                    return new Failure(403);
-//                else
-//                    return new Success(new HttpPrincipal("c0nst", "realm"));
-//            }
-//        });
 
         HttpContext contextRestart = server.createContext("/restart", new HttpHandler() {
             @Override
@@ -127,30 +122,43 @@ public class MyHttpServer {
     }
 
     private String cpuLoad() {
+        BigDecimal result = new BigDecimal("0.0");
         StringBuilder builder = runLinuxCommand("ps -aux --sort -pcpu");
         String[] lines = builder.toString().split("\n");
         int index = builder.indexOf("%CPU");
-        BigDecimal result = new BigDecimal("0.0");
         for (int i = 1; i < lines.length; i++) {
             result = result.add(new BigDecimal(lines[i].substring(index, index + 4).trim()));
         }
+        result = result.divide(new BigDecimal(numberOfCPUs()), new MathContext(3));
         return result.toString() + "%";
+    }
+
+    // Количество ядер
+    private String numberOfCPUs() {
+        StringBuilder builder = runLinuxCommand("lscpu");
+        String[] lines = builder.toString().split("\n");
+        String numberOfCPUs = "";
+        for (String line : lines) {
+            if (line.startsWith("CPU(s):")) {
+                numberOfCPUs = line.substring(7).trim();
+                break;
+            }
+        }
+        return numberOfCPUs;
     }
 
     private String freeSpace() {
         String[] lines = runLinuxCommand("df -h /").toString().split("\n");
-        String[] parts = lines[1].split("\\s");
-        StringBuilder builder = new StringBuilder();
-        for (String string : parts) {
-            if (!string.equals("")) {
-                builder.append(string).append("\n");
-            }
+        String line = lines[1];
+        for (int i = 0; i < 3; i++) {
+            line = line.substring(line.indexOf(" ")).trim();
         }
-        return builder.toString().split("\n")[3];
+        line = line.substring(0, line.indexOf(" "));
+        return line + "B";
     }
 
     private String archiveSize() {
-        StringBuilder builder = runLinuxCommand("du --block-size=M " + PATH + "/archive");
+        StringBuilder builder = runLinuxCommand("du --block-size=M " + path + "/archive");
         builder.delete(builder.indexOf("M"), builder.length());
         builder.append("MB");
         return builder.toString();
@@ -161,8 +169,8 @@ public class MyHttpServer {
         String[] lines = builder.toString().split("\n");
         int counter = 0;
         for (String line : lines) {
-            if (line.startsWith("tcp") && line.contains("rtsp")) {
-                counter ++;
+            if (line.startsWith("tcp") && (line.contains("rtsp") || line.contains("554"))) {
+                counter++;
             }
         }
         return Integer.toString(counter);
@@ -174,34 +182,34 @@ public class MyHttpServer {
         int counter = 0;
         for (String line : lines) {
             if (line.startsWith("tcp") && line.contains("9000")) {
-                counter ++;
+                counter++;
             }
         }
         return Integer.toString(counter);
     }
 
     private void restartServer() {
-        runLinuxCommand("service <stn-videoserver> restart");
+        runLinuxCommand("service restart");
     }
 
     private StringBuilder runLinuxCommand(String command) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         try {
-            String s;
-            Process p;
-            p = Runtime.getRuntime().exec(command);
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((s = br.readLine()) != null)
-                sb.append(s).append("\n");
-            p.waitFor();
-            if (p.exitValue() == 1) {
+            String line;
+            Process process;
+            process = Runtime.getRuntime().exec(command);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            while ((line = reader.readLine()) != null)
+                builder.append(line).append("\n");
+            process.waitFor();
+            if (process.exitValue() == 1) {
                 LOGGER.log(Level.WARNING, "Linux command exit key value: 1");
             }
-            p.destroy();
+            process.destroy();
         }
         catch (IOException | InterruptedException e) {
             LOGGER.log(Level.WARNING, null, e);
         }
-        return sb;
+        return builder;
     }
 }

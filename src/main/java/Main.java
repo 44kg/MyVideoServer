@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         try {
-            new MyHttpServer();
+            new MyHttpServer(args[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }
