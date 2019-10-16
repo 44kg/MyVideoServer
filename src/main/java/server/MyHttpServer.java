@@ -123,11 +123,15 @@ public class MyHttpServer {
 
     private String cpuLoad() {
         BigDecimal result = new BigDecimal("0.0");
-        StringBuilder builder = runLinuxCommand("ps -aux --sort -pcpu");
+        StringBuilder builder = runLinuxCommand("top -b d1 n1");
         String[] lines = builder.toString().split("\n");
-        int index = builder.indexOf("%CPU");
-        for (int i = 1; i < lines.length; i++) {
-            result = result.add(new BigDecimal(lines[i].substring(index, index + 4).trim()));
+        int index = lines[6].indexOf("%CPU");
+        String addendum;
+        for (int i = 7; i < lines.length; i++) {
+            addendum = lines[i].substring(index, index + 4).trim().replace(",", ".");
+            if (addendum.equals("0.0"))
+                break;
+            result = result.add(new BigDecimal(addendum));
         }
         result = result.divide(new BigDecimal(numberOfCPUs()), new MathContext(3));
         return result.toString() + "%";
