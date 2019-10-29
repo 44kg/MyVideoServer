@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a135db1-c497-4155-8d12-b3578fdd4678" name="Default Changelist" comment="" />
+    <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,35 +14,77 @@
       </list>
     </option>
   </component>
-  <component name="ProjectId" id="1R6K9luoIfOQIRssrPlgscbZjJ0" />
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1Rk3ZG1RW6s9ojA7iWgUit8Dz0Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Log4j hello world" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.34411764" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.MyHttpServerTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="MyVideoServer" />
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="MyServer" />
+      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MyHttpServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.MyHttpServerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyServer-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/MyServer-1.0-SNAPSHOT.jar" />
+      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <configuration name="original-MyServer-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/original-MyServer-1.0-SNAPSHOT.jar" />
+      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.MyServer-1.0-SNAPSHOT.jar" />
+      <item itemvalue="JAR Application.original-MyServer-1.0-SNAPSHOT.jar" />
+      <item itemvalue="JUnit.MyHttpServerTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyHttpServerTest" />
+        <item itemvalue="JAR Application.MyServer-1.0-SNAPSHOT.jar" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JAR Application.original-MyServer-1.0-SNAPSHOT.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -51,42 +93,86 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5a135db1-c497-4155-8d12-b3578fdd4678" name="Default Changelist" comment="" />
-      <created>1568981956548</created>
+      <changelist id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="" />
+      <created>1570197319696</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1568981956548</updated>
+      <updated>1570197319696</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="801" y="265" width="374" height="575" key="#com.intellij.ide.util.MemberChooser" timestamp="1569412053747">
+    <state x="588" y="214" width="867" height="677" key="#Project_Structure" timestamp="1571483562444">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="801" y="265" width="374" height="575" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1569412053747" />
-    <state width="1807" height="223" key="GridCell.Tab.0.bottom" timestamp="1569695531762">
+    <state x="588" y="214" width="867" height="677" key="#Project_Structure/67.27.1853.1053@67.27.1853.1053" timestamp="1571483562444" />
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1572293042573">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="223" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1569695531762" />
-    <state width="1807" height="223" key="GridCell.Tab.0.center" timestamp="1569695531761">
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572293042573" />
+    <state x="964" y="255" width="374" height="575" key="#com.intellij.ide.util.MemberChooser" timestamp="1571487243037">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="223" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1569695531761" />
-    <state width="1807" height="223" key="GridCell.Tab.0.left" timestamp="1569695531761">
+    <state x="964" y="255" width="374" height="575" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1571487243037" />
+    <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1571483381585">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="223" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1569695531761" />
-    <state width="1807" height="223" key="GridCell.Tab.0.right" timestamp="1569695531762">
+    <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1571483381585" />
+    <state x="571" y="210" width="824" height="684" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1571483327647">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="223" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1569695531762" />
-    <state x="576" y="298" width="824" height="508" key="IDE.errors.dialog" timestamp="1569101527309">
+    <state x="571" y="210" width="824" height="684" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1571483327647" />
+    <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1571667563492">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="576" y="298" width="824" height="508" key="IDE.errors.dialog/67.27.1853.1053@67.27.1853.1053" timestamp="1569101527309" />
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1569668319725">
+    <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1571667563492" />
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1572368465317">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1569668319725" />
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1572368465317">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1572368465317">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1572368465317">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1571773484567">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1571773484567" />
+    <state width="1807" height="344" key="GridCell.Tab.1.center" timestamp="1571773484566">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1571773484566" />
+    <state width="1807" height="344" key="GridCell.Tab.1.left" timestamp="1571773484566">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1571773484566" />
+    <state width="1807" height="344" key="GridCell.Tab.1.right" timestamp="1571773484566">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1571773484566" />
+    <state x="411" y="206" width="1024" height="845" key="SettingsEditor" timestamp="1572106669931">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1572106669931" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1572361398975">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572361398975" />
+    <state x="302" y="154" width="1372" height="796" key="new project wizard" timestamp="1570727261371">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="302" y="154" width="1372" height="796" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1570727261371" />
+    <state x="962" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1572107527089">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="962" y="229" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1572107527089" />
   </component>
 </project>
