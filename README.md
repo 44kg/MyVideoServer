@@ -1,5 +1,5 @@
 # MyVideoServer
 
 Maven package =>
-в параметры при запуске jar передать директорию и порт
-например: /home/user/stn/stn-videoserver 8080 или /usr/local/stn/stn-videoserver 1234
+РІ РїР°СЂР°РјРµС‚СЂС‹ РїСЂРё Р·Р°РїСѓСЃРєРµ jar РїРµСЂРµРґР°С‚СЊ РґРёСЂРµРєС‚РѕСЂРёСЋ Рё РїРѕСЂС‚
+РЅР°РїСЂРёРјРµСЂ: /home/user/stn/stn-videoserver 8080 РёР»Рё /usr/local/stn/stn-videoserver 1234
