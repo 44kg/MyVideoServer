@@ -21,9 +21,6 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenRunner">
-    <option name="skipTests" value="true" />
-  </component>
   <component name="ProjectId" id="1Rk3ZG1RW6s9ojA7iWgUit8Dz0Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -37,26 +34,65 @@
     <property name="project.structure.side.proportion" value="0.34411764" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="JUnit.MyHttpServerTest">
+  <component name="RunManager" selected="JAR Application.MyServer-1.0-SNAPSHOT.jar">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="MyServer" />
       <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyHttpServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyHttpServerTest.toByteArrayTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.MyHttpServer" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
       <option name="MAIN_CLASS_NAME" value="server.MyHttpServerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="toByteArrayTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StreamHandlerTest.toByteArrayTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.MyHttpServer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.StreamHandlerTest" />
+      <option name="METHOD_NAME" value="toByteArrayTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StreamHandlerTest.toStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.MyHttpServer" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.StreamHandlerTest" />
+      <option name="METHOD_NAME" value="toStringTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -67,26 +103,29 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2" />
     </configuration>
-    <configuration name="original-MyServer-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/target/original-MyServer-1.0-SNAPSHOT.jar" />
-      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JAR Application.MyServer-1.0-SNAPSHOT.jar" />
-      <item itemvalue="JAR Application.original-MyServer-1.0-SNAPSHOT.jar" />
-      <item itemvalue="JUnit.MyHttpServerTest" />
+      <item itemvalue="JUnit.MyHttpServerTest.toByteArrayTest" />
+      <item itemvalue="JUnit.StreamHandlerTest.toByteArrayTest" />
+      <item itemvalue="JUnit.StreamHandlerTest.toStringTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MyHttpServerTest" />
         <item itemvalue="JAR Application.MyServer-1.0-SNAPSHOT.jar" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JAR Application.original-MyServer-1.0-SNAPSHOT.jar" />
+        <item itemvalue="JUnit.StreamHandlerTest.toStringTest" />
+        <item itemvalue="JUnit.StreamHandlerTest.toByteArrayTest" />
+        <item itemvalue="JUnit.MyHttpServerTest.toByteArrayTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView />
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -106,10 +145,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="867" height="677" key="#Project_Structure/67.27.1853.1053@67.27.1853.1053" timestamp="1571483562444" />
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1572293042573">
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1572532975556">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572293042573" />
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572532975556" />
     <state x="964" y="255" width="374" height="575" key="#com.intellij.ide.util.MemberChooser" timestamp="1571487243037">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -122,26 +161,30 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="571" y="210" width="824" height="684" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1571483327647" />
+    <state x="558" y="27" width="860" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1572530905519">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="558" y="27" width="860" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572530905519" />
     <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1571667563492">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1571667563492" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1572368465317">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1572534374677">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1572368465317">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1572534374677" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1572534374677">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1572368465317">
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1572534374677" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1572534374676">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1572368465317">
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1572534374676" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1572534374677">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1572368465317" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1572534374677" />
     <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1571773484567">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -162,10 +205,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1572106669931" />
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1572361398975">
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1572521623709">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572361398975" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572521623709" />
     <state x="302" y="154" width="1372" height="796" key="new project wizard" timestamp="1570727261371">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
