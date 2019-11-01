@@ -29,7 +29,7 @@ public class HttpHandlers {
 
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlers.class);
 
-    public HttpHandlers(MyHttpServer2 myHttpServer) {
+    public HttpHandlers(MyHttpServer myHttpServer) {
         httpHandlersMap = new HashMap<>();
         myHtml = new MyHtml();
 
@@ -53,7 +53,7 @@ public class HttpHandlers {
             if (new File(string).exists()) {
                 try {
                     File logPath = new File(myHttpServer.getPath() + LOGS);
-                    File zipFile = new File(myHttpServer.getPath() + MyHttpServer2.FILE_LOG + ".zip");
+                    File zipFile = new File(myHttpServer.getPath() + MyHttpServer.FILE_LOG + ".zip");
                     createZipLog(logPath, zipFile);
 
                     byte[] bytes = StreamHandler.toByteArray(new FileInputStream(zipFile));

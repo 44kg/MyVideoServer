@@ -69,22 +69,25 @@ public class LinuxCommandParser {
     }
 
     public static String getNumberOfConnections(StringBuilder response, String port) {
-        String[] lines = response.toString().split("\n");
-        int counter = 0;
-        for (String line : lines) {
-            if (line.startsWith("tcp")) {
-                for (int i = 0; i < 4; i++) {
-                    line = line.substring(line.indexOf(" ")).trim();
+        if (response != null && port != null) {
+            String[] lines = response.toString().split("\n");
+            int counter = 0;
+            for (String line : lines) {
+                if (line.startsWith("tcp")) {
+                    for (int i = 0; i < 4; i++) {
+                        line = line.substring(line.indexOf(" ")).trim();
+                    }
+                    if (line.substring(line.indexOf(":") + 1, line.indexOf(" ")).equals(port)) {
+                        counter++;
+                    }
                 }
-                if (line.substring(line.indexOf(":") + 1, line.indexOf(" ")).equals(port)) {
-                    counter++;
+                if (line.startsWith("unix")) {
+                    break;
                 }
             }
-            if (line.startsWith("unix")) {
-                break;
-            }
+            return Integer.toString(counter);
         }
-        return Integer.toString(counter);
+        else return null;
     }
 
     public static void restartServer() {
@@ -92,22 +95,27 @@ public class LinuxCommandParser {
     }
 
     public static StringBuilder runLinuxCommand(String command) {
-        StringBuilder builder = new StringBuilder();
-        try {
-            String line;
-            Process process = Runtime.getRuntime().exec(command);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            while ((line = reader.readLine()) != null)
-                builder.append(line).append("\n");
-            process.waitFor();
-            if (process.exitValue() == 1) {
-                LOGGER.log(Level.WARN, "Linux command: " + command + ". Exit value = 1");
+        if (command == null || command.trim().equals("")) {
+            return null;
+        }
+        else {
+            StringBuilder builder = new StringBuilder();
+            try {
+                String line;
+                Process process = Runtime.getRuntime().exec(command);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                while ((line = reader.readLine()) != null)
+                    builder.append(line).append("\n");
+                process.waitFor();
+                if (process.exitValue() == 1) {
+                    LOGGER.log(Level.WARN, "Linux command: " + command + ". Exit value = 1");
+                }
+                process.destroy();
+            } catch (IOException | InterruptedException e) {
+                LOGGER.log(Level.ERROR, "Linux command execution error", e);
+                return null;
             }
-            process.destroy();
+            return builder;
         }
-        catch (IOException | InterruptedException e) {
-            LOGGER.log(Level.ERROR, "Linux command execution error", e);
-        }
-        return builder;
     }
 }

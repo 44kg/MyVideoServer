@@ -28,6 +28,9 @@ public class MyHtml {
 
 
     public String getHtmlAsString(String htmlName) {
+        if (htmlName == null) {
+            return null;
+        }
         if (htmlName.equals(ADMIN)) {
             String cpuLoad = LinuxCommandParser.getCpuLoad();
             String freeSpace = LinuxCommandParser.getFreeSpace();
@@ -45,6 +48,12 @@ public class MyHtml {
     }
 
     public String getHtmlAsString(String htmlName, String errorInfo) {
+        if (htmlName == null) {
+            return null;
+        }
+        if (errorInfo == null) {
+            errorInfo = "";
+        }
         if (htmlName.equals(ERROR_500)) {
             String string = mapHtml.get(ERROR_500);
             return string.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
@@ -53,10 +62,25 @@ public class MyHtml {
     }
 
     public byte[] getHtmlAsByteArray(String htmlName) {
-        return getHtmlAsString(htmlName).getBytes();
+        if (htmlName == null) {
+            return null;
+        }
+        if (htmlName.equals(ADMIN)) {
+            return getHtmlAsString(htmlName).getBytes();
+        }
+        else return null;
     }
 
     public byte[] getHtmlAsByteArray(String htmlName, String errorInfo) {
-        return getHtmlAsString(htmlName, errorInfo).getBytes();
+        if (htmlName == null) {
+            return null;
+        }
+        if (errorInfo == null) {
+            errorInfo = "";
+        }
+        if (htmlName.equals(ERROR_500)) {
+            return getHtmlAsString(htmlName, errorInfo).getBytes();
+        }
+        else return null;
     }
 }

@@ -3,7 +3,7 @@ package app;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.MyHttpServer2;
+import server.MyHttpServer;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         createDirectories(args[0]);
         try {
-            MyHttpServer2 myHttpServer = new MyHttpServer2(args[0], Integer.parseInt(args[1]));
+            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]));
             myHttpServer.createHttpContexts();
             myHttpServer.start();
         }
@@ -24,8 +24,8 @@ public class Main {
     }
 
     public static void createDirectories(String workingPath) {
-        createPath(workingPath + MyHttpServer2.DIRECTORY_ARCHIVE);
-        createPath(workingPath + MyHttpServer2.DIRECTORY_LOGS);
+        createPath(workingPath + MyHttpServer.DIRECTORY_ARCHIVE);
+        createPath(workingPath + MyHttpServer.DIRECTORY_LOGS);
     }
 
     private static void createPath(String pathname) {

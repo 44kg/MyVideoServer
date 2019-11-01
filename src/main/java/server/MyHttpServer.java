@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Map.Entry;
 
-public class MyHttpServer2 {
+public class MyHttpServer {
     private HttpServer httpServer;
     private HttpHandlers httpHandlers;
     private String path;
@@ -19,9 +19,9 @@ public class MyHttpServer2 {
     public static final String DIRECTORY_LOGS = "/logs";
     public static final String DIRECTORY_ARCHIVE = "/archive";
 
-    private static final Logger LOGGER = LogManager.getLogger(MyHttpServer2.class);
+    private static final Logger LOGGER = LogManager.getLogger(MyHttpServer.class);
 
-    public MyHttpServer2(String path, int port) throws IOException {
+    public MyHttpServer(String path, int port) throws IOException {
         this.path = path;
         httpServer = HttpServer.create();
         httpHandlers = new HttpHandlers(this);
