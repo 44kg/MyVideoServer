@@ -39,6 +39,11 @@ public class MyHttpServer {
         LOGGER.log(Level.INFO, "Server started");
     }
 
+    public void stop() {
+        httpServer.stop(0);
+        LOGGER.log(Level.INFO, "Server stopped");
+    }
+
     public String getPath() {
         return path;
     }

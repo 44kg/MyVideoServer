@@ -34,7 +34,37 @@
     <property name="project.structure.side.proportion" value="0.34411764" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="JUnit.MyHtmlTest">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="MyServer" />
+      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpHandlersTest.getHttpHandlersMapTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.HttpHandlersTest" />
+      <option name="METHOD_NAME" value="getHttpHandlersMapTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyHtmlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyServer" />
       <extension name="coverage">
@@ -46,38 +76,6 @@
       <option name="PACKAGE_NAME" value="server" />
       <option name="MAIN_CLASS_NAME" value="server.MyHtmlTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyHtmlTest.getHtmlAsByteArrayTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MyServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.MyHtmlTest" />
-      <option name="METHOD_NAME" value="getHtmlAsByteArrayTest1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyHtmlTest.getHtmlAsByteArrayTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MyServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.MyHtmlTest" />
-      <option name="METHOD_NAME" value="getHtmlAsByteArrayTest2" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,19 +113,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest1" />
-      <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest2" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest3" />
       <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest4" />
       <item itemvalue="JUnit.MyHtmlTest" />
+      <item itemvalue="JUnit.HttpHandlersTest.getHttpHandlersMapTest1" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.HttpHandlersTest.getHttpHandlersMapTest1" />
         <item itemvalue="JUnit.MyHtmlTest" />
         <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest4" />
         <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest3" />
-        <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest2" />
-        <item itemvalue="JUnit.MyHtmlTest.getHtmlAsByteArrayTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -156,10 +154,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="867" height="677" key="#Project_Structure/67.27.1853.1053@67.27.1853.1053" timestamp="1571483562444" />
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1572613386661">
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1572806682232">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572613386661" />
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572806682232" />
     <state x="117" y="133" width="1653" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1572608443454">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -184,22 +182,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1571667563492" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1572617213633">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1572806641970">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1572617213633" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1572617213632">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1572806641970" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1572806641970">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1572617213632" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1572617213632">
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1572806641970" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1572806641969">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1572617213632" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1572617213632">
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1572806641969" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1572806641970">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1572617213632" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1572806641970" />
     <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1571773484567">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -220,10 +218,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1572106669931" />
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1572604883943">
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1572801884869">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572604883943" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1572801884869" />
     <state x="302" y="154" width="1372" height="796" key="new project wizard" timestamp="1570727261371">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
