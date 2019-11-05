@@ -16,7 +16,7 @@ public class HttpHandlersTest {
     @Before
     public void startTest() {
         try {
-            myHttpServer = new MyHttpServer("", 8080);
+            myHttpServer = new MyHttpServer("");
             httpHandlers = new HttpHandlers(myHttpServer);
         }
         catch (IOException e) {

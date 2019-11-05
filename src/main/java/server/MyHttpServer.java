@@ -21,11 +21,10 @@ public class MyHttpServer {
 
     private static final Logger LOGGER = LogManager.getLogger(MyHttpServer.class);
 
-    public MyHttpServer(String path, int port) throws IOException {
+    public MyHttpServer(String path) throws IOException {
         this.path = path;
         httpServer = HttpServer.create();
         httpHandlers = new HttpHandlers(this);
-        httpServer.bind(new InetSocketAddress(port), 0);
     }
 
     public void createHttpContexts() {
@@ -46,5 +45,9 @@ public class MyHttpServer {
 
     public String getPath() {
         return path;
+    }
+
+    public HttpServer getHttpServer() {
+        return httpServer;
     }
 }

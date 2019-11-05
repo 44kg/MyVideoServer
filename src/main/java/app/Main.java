@@ -7,6 +7,7 @@ import server.MyHttpServer;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
@@ -14,7 +15,8 @@ public class Main {
     public static void main(String[] args) {
         createDirectories(args[0]);
         try {
-            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]));
+            MyHttpServer myHttpServer = new MyHttpServer(args[0]);
+            myHttpServer.getHttpServer().bind(new InetSocketAddress(Integer.parseInt(args[1])), 0);
             myHttpServer.createHttpContexts();
             myHttpServer.start();
         }

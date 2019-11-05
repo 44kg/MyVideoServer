@@ -31,7 +31,7 @@ public class HttpHandlers {
 
     public HttpHandlers(MyHttpServer myHttpServer) {
         httpHandlersMap = new HashMap<>();
-        myHtml = new MyHtml();
+        myHtml = new MyHtml(myHttpServer);
 
         httpHandlersMap.put(ADMIN, httpExchange -> {
             try {

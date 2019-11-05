@@ -3,8 +3,6 @@ package server;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
-
 public class LinuxCommandParserTest {
     @Test
     public void runLinuxCommandTest1() {
@@ -13,22 +11,22 @@ public class LinuxCommandParserTest {
 
     @Test
     public void runLinuxCommandTest2() {
-        Assert.assertNull(LinuxCommandParser.runLinuxCommand("enyWrongCommand"));
+        Assert.assertEquals("", LinuxCommandParser.runLinuxCommand("enyWrongCommand").toString());
     }
 
     @Test
     public void runLinuxCommandTest3() {
-        Assert.assertNull(LinuxCommandParser.runLinuxCommand(null));
+        Assert.assertEquals("", LinuxCommandParser.runLinuxCommand(null).toString());
     }
 
     @Test
     public void runLinuxCommandTest4() {
-        Assert.assertNull(LinuxCommandParser.runLinuxCommand(""));
+        Assert.assertEquals("", LinuxCommandParser.runLinuxCommand("").toString());
     }
 
     @Test
     public void runLinuxCommandTest5() {
-        Assert.assertNull(LinuxCommandParser.runLinuxCommand("    "));
+        Assert.assertEquals("", LinuxCommandParser.runLinuxCommand("    ").toString());
     }
 
     @Test
@@ -75,31 +73,21 @@ public class LinuxCommandParserTest {
 
     @Test
     public void getArchiveSizeTest1() {
-        Assert.assertNotNull(LinuxCommandParser.getArchiveSize());
-    }
-
-    @Test
-    public void getArchiveSizeTest2() {
-        String string = LinuxCommandParser.getArchiveSize();
-        string = string.substring(0, string.length() - 2);
-        int archiveSize = Integer.parseInt(string);
-        Assert.assertTrue(archiveSize >= 0);
+        Assert.assertNotNull(LinuxCommandParser.getArchiveSize("anyPath"));
     }
 
     @Test
     public void getNumberOfConnectionsTest1() {
-        Assert.assertNull(LinuxCommandParser.getNumberOfConnections(null, null));
+        Assert.assertEquals("", LinuxCommandParser.getNumberOfConnections(null, null));
     }
 
     @Test
     public void getNumberOfConnectionsTest2() {
-        Assert.assertEquals(0, Integer.parseInt(LinuxCommandParser
-                .getNumberOfConnections(new StringBuilder(), "anyPort")));
+        Assert.assertEquals("", LinuxCommandParser.getNumberOfConnections(new StringBuilder(), "anyPort"));
     }
 
     @Test
     public void getNumberOfConnectionsTest3() {
-        Assert.assertEquals(0, Integer.parseInt(LinuxCommandParser
-                .getNumberOfConnections(new StringBuilder("anyStringBuilder"), "")));
+        Assert.assertEquals("", LinuxCommandParser.getNumberOfConnections(new StringBuilder("anyStringBuilder"), ""));
     }
 }

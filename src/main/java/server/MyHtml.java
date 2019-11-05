@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyHtml {
+    private MyHttpServer myHttpServer;
     private Map<String, String> mapHtml;
 
     public static final String ADMIN = "admin.html";
@@ -16,7 +17,8 @@ public class MyHtml {
     public static final String HTML_REPLACE_CLIENTS = "$clients";
     public static final String HTML_REPLACE_ERROR_INFO = "$info";
 
-    public MyHtml() {
+    public MyHtml(MyHttpServer myHttpServer) {
+        this.myHttpServer = myHttpServer;
         loadHtmls();
     }
 
@@ -29,14 +31,14 @@ public class MyHtml {
 
     public String getHtmlAsString(String htmlName) {
         if (htmlName == null) {
-            return null;
+            return "";
         }
         if (htmlName.equals(ADMIN)) {
             String cpuLoad = LinuxCommandParser.getCpuLoad();
             String freeSpace = LinuxCommandParser.getFreeSpace();
-            String archiveSize = LinuxCommandParser.getArchiveSize();
+            String archiveSize = LinuxCommandParser.getArchiveSize(myHttpServer.getPath() + MyHttpServer.DIRECTORY_ARCHIVE);
             StringBuilder response = LinuxCommandParser.runLinuxCommand(LinuxCommandParser.COMMAND_CONNECTIONS);
-            String cameras = LinuxCommandParser.getNumberOfConnections(response, "554");
+            String cameras = LinuxCommandParser.getNumberOfConnections(response, "rtsp");
             String clients = LinuxCommandParser.getNumberOfConnections(response, "9000");
 
             String string = mapHtml.get(ADMIN);
@@ -44,12 +46,12 @@ public class MyHtml {
                     .replace(HTML_REPLACE_ARCHIVE_SIZE, archiveSize).replace(HTML_REPLACE_CAMERAS, cameras)
                     .replace(HTML_REPLACE_CLIENTS, clients);
         }
-        else return null;
+        return "";
     }
 
     public String getHtmlAsString(String htmlName, String errorInfo) {
         if (htmlName == null) {
-            return null;
+            return "";
         }
         if (errorInfo == null) {
             errorInfo = "";
@@ -58,29 +60,14 @@ public class MyHtml {
             String string = mapHtml.get(ERROR_500);
             return string.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
         }
-        else return null;
+        return "";
     }
 
     public byte[] getHtmlAsByteArray(String htmlName) {
-        if (htmlName == null) {
-            return null;
-        }
-        if (htmlName.equals(ADMIN)) {
-            return getHtmlAsString(htmlName).getBytes();
-        }
-        else return null;
+        return getHtmlAsString(htmlName).getBytes();
     }
 
     public byte[] getHtmlAsByteArray(String htmlName, String errorInfo) {
-        if (htmlName == null) {
-            return null;
-        }
-        if (errorInfo == null) {
-            errorInfo = "";
-        }
-        if (htmlName.equals(ERROR_500)) {
-            return getHtmlAsString(htmlName, errorInfo).getBytes();
-        }
-        else return null;
+        return getHtmlAsString(htmlName, errorInfo).getBytes();
     }
 }
