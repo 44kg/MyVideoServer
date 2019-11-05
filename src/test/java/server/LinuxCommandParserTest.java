@@ -64,14 +64,6 @@ public class LinuxCommandParserTest {
     }
 
     @Test
-    public void getFreeSpaceTest2() {
-        String string = LinuxCommandParser.getFreeSpace();
-        string = string.substring(0, string.length() - 2);
-        int freeSpace = Integer.parseInt(string);
-        Assert.assertTrue(freeSpace >= 0);
-    }
-
-    @Test
     public void getArchiveSizeTest1() {
         Assert.assertNotNull(LinuxCommandParser.getArchiveSize("anyPath"));
     }

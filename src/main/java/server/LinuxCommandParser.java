@@ -56,7 +56,7 @@ public class LinuxCommandParser {
     public static String getFreeSpace() {
         StringBuilder builder = runLinuxCommand(COMMAND_FREE_SPACE);
         String[] lines = builder.toString().split("\n");
-        if (lines.length > 2) {
+        if (lines.length >= 2) {
             String line = lines[1];
             for (int i = 0; i < 3; i++) {
                 line = line.substring(line.indexOf(" ")).trim();
