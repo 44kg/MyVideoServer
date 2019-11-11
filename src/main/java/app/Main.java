@@ -9,6 +9,7 @@ import server.httpHandlers.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.URL;
 import java.util.concurrent.Executors;
 
 public class Main {
@@ -32,6 +33,7 @@ public class Main {
 
 
             myHttpServer.getHttpServer().start();
+            LOGGER.log(Level.INFO, "Server started");
         }
         catch (IOException e) {
             LOGGER.log(Level.ERROR, "Server error", e);

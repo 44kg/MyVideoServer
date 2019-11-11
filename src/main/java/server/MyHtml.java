@@ -1,73 +1,44 @@
 package server;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
 
 public class MyHtml {
     private MyHttpServer myHttpServer;
-    private Map<String, String> mapHtml;
+    private List<String> htmlNames;
 
     public static final String ADMIN = "admin.html";
     public static final String ERROR_500 = "error500.html";
 
-    public static final String HTML_REPLACE_CPU = "$cpu";
-    public static final String HTML_REPLACE_FREE_SPACE = "$freespace";
-    public static final String HTML_REPLACE_ARCHIVE_SIZE = "$archivesize";
-    public static final String HTML_REPLACE_CAMERAS = "$cameras";
-    public static final String HTML_REPLACE_CLIENTS = "$clients";
-    public static final String HTML_REPLACE_ERROR_INFO = "$info";
+    public static final String HTML_PACKAGE = "html/";
 
     public MyHtml(MyHttpServer myHttpServer) {
         this.myHttpServer = myHttpServer;
-        loadHtmls();
+        URL url = ClassLoader.getSystemResource(HTML_PACKAGE);
+        File file = new File(url.getPath());
+        String[] files = file.list();
+        if (files != null) {
+            htmlNames = Arrays.asList(files);
+        }
     }
 
-    private void loadHtmls() {
-        mapHtml = new HashMap<>();
-        mapHtml.put(ADMIN, StreamHandler.toString(ClassLoader.getSystemResourceAsStream(ADMIN)));
-        mapHtml.put(ERROR_500, StreamHandler.toString(ClassLoader.getSystemResourceAsStream(ERROR_500)));
+    public InputStream getHtmlAsStream(String fileName) {
+        if (htmlNames.contains(fileName)) {
+            return ClassLoader.getSystemResourceAsStream(HTML_PACKAGE + fileName);
+        }
+        else return null;
     }
 
-
-    public String getHtmlAsString(String htmlName) {
-        if (htmlName == null) {
-            return "";
+    public String getHtmlAsString(String fileName) {
+        if (htmlNames.contains(fileName)) {
+            return StreamHandler.toString(ClassLoader.getSystemResourceAsStream(HTML_PACKAGE + fileName));
         }
-        if (htmlName.equals(ADMIN)) {
-            String cpuLoad = LinuxCommandParser.getCpuLoad();
-            String freeSpace = LinuxCommandParser.getFreeSpace();
-            String archiveSize = LinuxCommandParser.getArchiveSize(myHttpServer.getPath() + MyHttpServer.DIRECTORY_ARCHIVE);
-            StringBuilder response = LinuxCommandParser.runLinuxCommand(LinuxCommandParser.COMMAND_CONNECTIONS);
-            String cameras = LinuxCommandParser.getNumberOfConnections(response, "rtsp");
-            String clients = LinuxCommandParser.getNumberOfConnections(response, "9000");
-
-            String string = mapHtml.get(ADMIN);
-            return string.replace(HTML_REPLACE_CPU, cpuLoad).replace(HTML_REPLACE_FREE_SPACE, freeSpace)
-                    .replace(HTML_REPLACE_ARCHIVE_SIZE, archiveSize).replace(HTML_REPLACE_CAMERAS, cameras)
-                    .replace(HTML_REPLACE_CLIENTS, clients);
-        }
-        return "";
+        else return "";
     }
 
-    public String getHtmlAsString(String htmlName, String errorInfo) {
-        if (htmlName == null) {
-            return "";
-        }
-        if (errorInfo == null) {
-            errorInfo = "";
-        }
-        if (htmlName.equals(ERROR_500)) {
-            String string = mapHtml.get(ERROR_500);
-            return string.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
-        }
-        return "";
-    }
-
-    public byte[] getHtmlAsByteArray(String htmlName) {
-        return getHtmlAsString(htmlName).getBytes();
-    }
-
-    public byte[] getHtmlAsByteArray(String htmlName, String errorInfo) {
-        return getHtmlAsString(htmlName, errorInfo).getBytes();
+    public byte[] getHtmlAsByteArray(String fileName) {
+        return getHtmlAsString(fileName).getBytes();
     }
 }

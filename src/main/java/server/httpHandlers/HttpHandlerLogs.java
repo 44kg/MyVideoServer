@@ -10,7 +10,6 @@ import server.StreamHandler;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class HttpHandlerLogs extends MyHttpHandler {
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlerLogs.class);
@@ -28,17 +27,9 @@ public class HttpHandlerLogs extends MyHttpHandler {
                 File zipFile = new File(getMyHttpServer().getPath() + MyHttpServer.FILE_LOG + ".zip");
                 createZipLog(logPath, zipFile);
 
-                byte[] bytes = StreamHandler.toByteArray(new FileInputStream(zipFile));
-
-                if (!zipFile.delete()) {
-                    LOGGER.log(Level.WARN, "Zip file cannot be deleted");
-                }
-
                 httpExchange.getResponseHeaders().add(HttpConstants.CONTENT_TYPE_KEY, HttpConstants.CONTENT_TYPE_VALUE);
-                httpExchange.sendResponseHeaders(200, bytes.length);
-                OutputStream os = httpExchange.getResponseBody();
-                os.write(bytes);
-                os.close();
+                httpExchange.sendResponseHeaders(200, 0);
+                StreamHandler.transmitData(new FileInputStream(zipFile), httpExchange.getResponseBody());
             }
             catch (IOException e) {
                 LOGGER.log(Level.ERROR, "Log file sending error", e);

@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import server.HtmlParser;
 import server.MyHtml;
 import server.MyHttpServer;
 import server.StreamHandler;
@@ -24,10 +25,11 @@ public abstract class MyHttpHandler implements HttpHandler {
 
     public void sendErrorResponse(HttpExchange httpExchange, String errorInfo) {
         try {
-            byte[] bytes = myHttpServer.getMyHtml().getHtmlAsByteArray(MyHtml.ERROR_500, errorInfo);
-            httpExchange.sendResponseHeaders(500, bytes.length);
+            String string = myHttpServer.getMyHtml().getHtmlAsString(MyHtml.ERROR_500);
+            string = HtmlParser.parseError500(string, errorInfo);
+            httpExchange.sendResponseHeaders(500, 0);
             OutputStream os = httpExchange.getResponseBody();
-            os.write(bytes);
+            os.write(string.getBytes());
             os.close();
         }
         catch (IOException e) {

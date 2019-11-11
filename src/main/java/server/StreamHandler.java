@@ -10,6 +10,23 @@ import java.nio.charset.StandardCharsets;
 public class StreamHandler {
     private static final Logger LOGGER = LogManager.getLogger(StreamHandler.class);
 
+    public static void transmitData(InputStream inputStream, OutputStream outputStream) {
+        if (inputStream != null && outputStream != null) {
+            byte[] buffer = new byte[1024];
+            int length;
+            try {
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+                inputStream.close();
+                outputStream.close();
+            }
+            catch (IOException e) {
+                LOGGER.log(Level.ERROR, "Stream cannot be read", e);
+            }
+        }
+    }
+
     public static byte[] toByteArray(InputStream inputStream) {
         if (inputStream != null) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
