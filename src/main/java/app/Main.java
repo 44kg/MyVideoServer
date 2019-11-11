@@ -3,22 +3,35 @@ package app;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.MyHttpServer;
+import server.*;
+import server.httpHandlers.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.concurrent.Executors;
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        createDirectories(args[0]);
         try {
-            MyHttpServer myHttpServer = new MyHttpServer(args[0]);
-            myHttpServer.getHttpServer().bind(new InetSocketAddress(Integer.parseInt(args[1])), 0);
-            myHttpServer.createHttpContexts();
-            myHttpServer.start();
+            createDirectories(args[0]);
+
+            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]));
+
+            myHttpServer.getHttpServer().bind(new InetSocketAddress(myHttpServer.getPort()), 0);
+            myHttpServer.getHttpServer().setExecutor(Executors.newCachedThreadPool());
+
+            MyHtml myHtml = new MyHtml(myHttpServer);
+            myHttpServer.setMyHtml(myHtml);
+
+            myHttpServer.getHttpServer().createContext(HttpConstants.ADMIN, new HttpHandlerAdmin(myHttpServer));
+            myHttpServer.getHttpServer().createContext(HttpConstants.LOGS, new HttpHandlerLogs(myHttpServer));
+            myHttpServer.getHttpServer().createContext(HttpConstants.RESTART, new HttpHandlerRestart(myHttpServer));
+
+
+            myHttpServer.getHttpServer().start();
         }
         catch (IOException e) {
             LOGGER.log(Level.ERROR, "Server error", e);
@@ -30,7 +43,7 @@ public class Main {
         createPath(workingPath + MyHttpServer.DIRECTORY_LOGS);
     }
 
-    private static void createPath(String pathname) {
+    public static void createPath(String pathname) {
         File file = new File(pathname);
         if (!file.exists()) {
             if (file.mkdir()) {
