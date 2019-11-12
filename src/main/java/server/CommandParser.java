@@ -10,21 +10,22 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class LinuxCommandParser {
+public class CommandParser {
     public static final String COMMAND_CPU_LOAD = "top -b d1 n1";
     public static final String COMMAND_NUM_OF_CPUS = "lscpu";
     public static final String COMMAND_FREE_SPACE = "df -h /";
     public static final String COMMAND_ARCHIVE_SIZE = "du --block-size=M ";
     public static final String COMMAND_CONNECTIONS = "netstat -nap";
+    public static final String COMMAND_RESTART_SERVER = "service restart";
 
-    private static final Logger LOGGER = LogManager.getLogger(LinuxCommandParser.class);
+    public static final String PORT_FOR_CAMERAS = "rtsp";
+    public static final String PORT_FOR_CLIENTS = "9000";
 
-    public LinuxCommandParser() {}
+    private static final Logger LOGGER = LogManager.getLogger(CommandParser.class);
 
-    public static String getCpuLoad() {
-        StringBuilder builder = runLinuxCommand(COMMAND_CPU_LOAD);
+    public static String parseCpuLoad(String response, int numberOfCPUs) {
         BigDecimal result = new BigDecimal("0.0");
-        String[] lines = builder.toString().split("\n");
+        String[] lines = response.split("\n");
         if (lines.length > 6) {
             int index = lines[6].indexOf("%CPU");
             String addendum;
@@ -34,16 +35,15 @@ public class LinuxCommandParser {
                     break;
                 result = result.add(new BigDecimal(addendum));
             }
-            result = result.divide(new BigDecimal(getNumberOfCPUs()), new MathContext(3));
+            result = result.divide(new BigDecimal(String.valueOf(numberOfCPUs)), new MathContext(3));
             return result.toString() + "%";
         }
         return "";
     }
 
-    public static String getNumberOfCPUs() {
-        StringBuilder builder = runLinuxCommand(COMMAND_NUM_OF_CPUS);
-        String[] lines = builder.toString().split("\n");
-        String numberOfCPUs = "";
+    public static String parseNumberOfCPUs(String response) {
+        String[] lines = response.split("\n");
+        String numberOfCPUs = "0";
         for (String line : lines) {
             if (line.startsWith("CPU(s):")) {
                 numberOfCPUs = line.substring(7).trim();
@@ -53,9 +53,8 @@ public class LinuxCommandParser {
         return numberOfCPUs;
     }
 
-    public static String getFreeSpace() {
-        StringBuilder builder = runLinuxCommand(COMMAND_FREE_SPACE);
-        String[] lines = builder.toString().split("\n");
+    public static String parseFreeSpace(String response) {
+        String[] lines = response.split("\n");
         if (lines.length >= 2) {
             String line = lines[1];
             for (int i = 0; i < 3; i++) {
@@ -67,8 +66,8 @@ public class LinuxCommandParser {
         return "";
     }
 
-    public static String getArchiveSize(String path) {
-        StringBuilder builder = runLinuxCommand(COMMAND_ARCHIVE_SIZE + path);
+    public static String parseArchiveSize(String response) {
+        StringBuilder builder = new StringBuilder(response);
         if (builder.length() > 0) {
             builder.delete(builder.indexOf("M"), builder.length());
             builder.append("MB");
@@ -77,9 +76,9 @@ public class LinuxCommandParser {
         return "";
     }
 
-    public static String getNumberOfConnections(StringBuilder response, String port) {
+    public static String parseNumberOfConnections(String response, String port) {
         if (response != null && port != null) {
-            String[] lines = response.toString().split("\n");
+            String[] lines = response.split("\n");
             if (lines.length > 3) {
                 int counter = 0;
                 for (String line : lines) {
@@ -99,34 +98,5 @@ public class LinuxCommandParser {
             }
         }
         return "";
-    }
-
-    public static void restartServer() {
-        runLinuxCommand("service restart");
-    }
-
-    public static StringBuilder runLinuxCommand(String command) {
-        if (command == null || command.trim().equals("")) {
-            return new StringBuilder();
-        }
-        else {
-            StringBuilder builder = new StringBuilder();
-            try {
-                String line;
-                Process process = Runtime.getRuntime().exec(command);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                while ((line = reader.readLine()) != null)
-                    builder.append(line).append("\n");
-                process.waitFor();
-                if (process.exitValue() == 1) {
-                    LOGGER.log(Level.WARN, "Linux command: " + command + ". Exit value = 1");
-                }
-                process.destroy();
-            } catch (IOException | InterruptedException e) {
-                LOGGER.log(Level.ERROR, "Linux command execution error", e);
-                return new StringBuilder();
-            }
-            return builder;
-        }
     }
 }

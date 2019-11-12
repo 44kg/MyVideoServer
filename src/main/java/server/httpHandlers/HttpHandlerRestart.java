@@ -4,7 +4,8 @@ import com.sun.net.httpserver.HttpExchange;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.LinuxCommandParser;
+import server.CommandExecutor;
+import server.CommandParser;
 import server.MyHttpServer;
 
 import java.io.IOException;
@@ -32,6 +33,6 @@ public class HttpHandlerRestart extends MyHttpHandler{
             LOGGER.log(Level.ERROR, "Restart server error", e);
             sendErrorResponse(httpExchange, "Сервер не был перезапущен.");
         }
-        LinuxCommandParser.restartServer();
+        CommandExecutor.runLinuxCommand(CommandParser.COMMAND_RESTART_SERVER);
     }
 }

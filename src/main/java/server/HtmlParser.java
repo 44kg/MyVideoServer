@@ -9,12 +9,20 @@ public class HtmlParser {
     public static final String HTML_REPLACE_ERROR_INFO = "$info";
 
     public static String parseAdmin(String string, String serverPath) {
-        String cpuLoad = LinuxCommandParser.getCpuLoad();
-        String freeSpace = LinuxCommandParser.getFreeSpace();
-        String archiveSize = LinuxCommandParser.getArchiveSize(serverPath + MyHttpServer.DIRECTORY_ARCHIVE);
-        StringBuilder response = LinuxCommandParser.runLinuxCommand(LinuxCommandParser.COMMAND_CONNECTIONS);
-        String cameras = LinuxCommandParser.getNumberOfConnections(response, "rtsp");
-        String clients = LinuxCommandParser.getNumberOfConnections(response, "9000");
+        String numberOfCPUs = CommandParser.parseNumberOfCPUs(CommandExecutor.runLinuxCommand(CommandParser.COMMAND_NUM_OF_CPUS));
+        String response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CPU_LOAD);
+        String cpuLoad = CommandParser.parseCpuLoad(response, Integer.parseInt(numberOfCPUs));
+
+        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_FREE_SPACE);
+        String freeSpace = CommandParser.parseFreeSpace(response);
+
+        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_ARCHIVE_SIZE + serverPath);
+        String archiveSize = CommandParser.parseArchiveSize(response);
+
+        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CONNECTIONS);
+        String cameras = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CAMERAS);
+        String clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
+        System.out.println(cameras + " " + clients);
 
         return string.replace(HTML_REPLACE_CPU, cpuLoad).replace(HTML_REPLACE_FREE_SPACE, freeSpace)
                 .replace(HTML_REPLACE_ARCHIVE_SIZE, archiveSize).replace(HTML_REPLACE_CAMERAS, cameras)
