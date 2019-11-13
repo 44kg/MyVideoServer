@@ -16,7 +16,7 @@ public class HtmlParser {
         response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_FREE_SPACE);
         String freeSpace = CommandParser.parseFreeSpace(response);
 
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_ARCHIVE_SIZE + serverPath);
+        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_ARCHIVE_SIZE + serverPath + MyHttpServer.DIRECTORY_ARCHIVE);
         String archiveSize = CommandParser.parseArchiveSize(response);
 
         response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CONNECTIONS);

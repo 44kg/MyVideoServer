@@ -58,7 +58,8 @@ public class CommandParser {
     }
 
     public static String parseArchiveSize(String response) {
-        StringBuilder builder = new StringBuilder(response);
+        String[] lines = response.split("\n");
+        StringBuilder builder = new StringBuilder(lines[lines.length - 1]);
         if (builder.length() > 0) {
             builder.delete(builder.indexOf("M"), builder.length());
             builder.append("MB");
