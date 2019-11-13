@@ -9,7 +9,6 @@ import server.httpHandlers.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.URL;
 import java.util.concurrent.Executors;
 
 public class Main {
@@ -23,9 +22,6 @@ public class Main {
 
             myHttpServer.getHttpServer().bind(new InetSocketAddress(myHttpServer.getPort()), 0);
             myHttpServer.getHttpServer().setExecutor(Executors.newCachedThreadPool());
-
-            MyHtml myHtml = new MyHtml(myHttpServer);
-            myHttpServer.setMyHtml(myHtml);
 
             myHttpServer.getHttpServer().createContext(HttpConstants.ADMIN, new HttpHandlerAdmin(myHttpServer));
             myHttpServer.getHttpServer().createContext(HttpConstants.LOGS, new HttpHandlerLogs(myHttpServer));

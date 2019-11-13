@@ -22,7 +22,6 @@ public class HtmlParser {
         response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CONNECTIONS);
         String cameras = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CAMERAS);
         String clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
-        System.out.println(cameras + " " + clients);
 
         return string.replace(HTML_REPLACE_CPU, cpuLoad).replace(HTML_REPLACE_FREE_SPACE, freeSpace)
                 .replace(HTML_REPLACE_ARCHIVE_SIZE, archiveSize).replace(HTML_REPLACE_CAMERAS, cameras)

@@ -28,7 +28,7 @@ public class HttpHandlerLogs extends MyHttpHandler {
                 createZipLog(logPath, zipFile);
 
                 httpExchange.getResponseHeaders().add(HttpConstants.CONTENT_TYPE_KEY, HttpConstants.CONTENT_TYPE_VALUE);
-                httpExchange.sendResponseHeaders(200, 0);
+                httpExchange.sendResponseHeaders(200, zipFile.length());
                 StreamHandler.transmitData(new FileInputStream(zipFile), httpExchange.getResponseBody());
             }
             catch (IOException e) {

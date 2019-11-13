@@ -1,12 +1,5 @@
 package server;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -20,8 +13,6 @@ public class CommandParser {
 
     public static final String PORT_FOR_CAMERAS = "rtsp";
     public static final String PORT_FOR_CLIENTS = "9000";
-
-    private static final Logger LOGGER = LogManager.getLogger(CommandParser.class);
 
     public static String parseCpuLoad(String response, int numberOfCPUs) {
         BigDecimal result = new BigDecimal("0.0");

@@ -11,6 +11,7 @@ import server.MyHttpServer;
 import server.StreamHandler;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -25,11 +26,11 @@ public abstract class MyHttpHandler implements HttpHandler {
 
     public void sendErrorResponse(HttpExchange httpExchange, String errorInfo) {
         try {
-            String string = myHttpServer.getMyHtml().getHtmlAsString(MyHtml.ERROR_500);
+            String string = MyHtml.getHtmlAsString(MyHtml.ERROR_500);
             string = HtmlParser.parseError500(string, errorInfo);
             httpExchange.sendResponseHeaders(500, 0);
             OutputStream os = httpExchange.getResponseBody();
-            os.write(string.getBytes());
+            os.write(string.getBytes(StandardCharsets.UTF_8));
             os.close();
         }
         catch (IOException e) {

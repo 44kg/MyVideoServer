@@ -10,6 +10,7 @@ import server.MyHttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 public class HttpHandlerRestart extends MyHttpHandler{
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlerRestart.class);
@@ -26,7 +27,7 @@ public class HttpHandlerRestart extends MyHttpHandler{
             httpExchange.getResponseHeaders().add(HttpConstants.ACCEPT_KEY, HttpConstants.ACCEPT_VALUE);
             httpExchange.sendResponseHeaders(200, message.length());
             OutputStream os = httpExchange.getResponseBody();
-            os.write(message.getBytes());
+            os.write(message.getBytes(StandardCharsets.UTF_8));
             os.close();
         }
         catch (IOException e) {

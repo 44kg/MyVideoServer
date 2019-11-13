@@ -3,7 +3,6 @@ package server;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.httpHandlers.HttpHandlerAdmin;
 
 import java.io.BufferedReader;
 import java.io.IOException;
