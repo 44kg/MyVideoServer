@@ -1,0 +1,2 @@
+255M	/home/mainkaif/stn/stn-videoserver/archive
+

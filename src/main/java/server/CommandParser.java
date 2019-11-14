@@ -68,6 +68,9 @@ public class CommandParser {
         if (response != null) {
             String[] lines = response.split("\n");
             StringBuilder builder = new StringBuilder(lines[lines.length - 1]);
+            if (builder.toString().contains("M")) {
+                builder.delete(builder.indexOf("M") + 1, builder.length());
+            }
             if (builder.toString().endsWith("M")) {
                 builder.append("B");
                 return builder.toString();
