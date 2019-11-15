@@ -23,7 +23,15 @@ public class HttpHandlerAdmin extends MyHttpHandler {
     public void handle(HttpExchange httpExchange) {
         try {
             String string = MyHtml.getHtmlAsString(MyHtml.ADMIN);
-            string = HtmlParser.parseAdmin(string, executeCommands());
+
+            List<String> list = new ArrayList<>();
+            list.add(getMyHttpServer().getServerState().getCpuLoad());
+            list.add(getMyHttpServer().getServerState().getFreeSpace());
+            list.add(getMyHttpServer().getServerState().getArchiveSize());
+            list.add(getMyHttpServer().getServerState().getCameras());
+            list.add(getMyHttpServer().getServerState().getClients());
+
+            string = HtmlParser.parseAdmin(string, list);
             byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
 
             httpExchange.getResponseHeaders().add(HttpConstants.ACCEPT_ENCODING_KEY, HttpConstants.ACCEPT_ENCODING_VALUE);
@@ -36,31 +44,5 @@ public class HttpHandlerAdmin extends MyHttpHandler {
             LOGGER.log(Level.ERROR, "html sending error: " + MyHtml.ADMIN, e);
             sendErrorResponse(httpExchange, "Не удалось загрузить страницу.");
         }
-    }
-
-    private List<String> executeCommands() {
-        List<String> list = new ArrayList<>();
-
-        String numberOfCPUs = CommandParser.parseNumberOfCPUs(CommandExecutor.runLinuxCommand(CommandParser.COMMAND_NUM_OF_CPUS));
-        String response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CPU_LOAD);
-        String cpuLoad = CommandParser.parseCpuLoad(response, Integer.parseInt(numberOfCPUs));
-
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_FREE_SPACE);
-        String freeSpace = CommandParser.parseFreeSpace(response);
-
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_ARCHIVE_SIZE
-                + getMyHttpServer().getPath() + MyHttpServer.DIRECTORY_ARCHIVE);
-        String archiveSize = CommandParser.parseArchiveSize(response);
-
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CONNECTIONS);
-        String cameras = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CAMERAS);
-        String clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
-
-        list.add(cpuLoad);
-        list.add(freeSpace);
-        list.add(archiveSize);
-        list.add(cameras);
-        list.add(clients);
-        return list;
     }
 }

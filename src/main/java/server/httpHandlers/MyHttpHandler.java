@@ -8,12 +8,9 @@ import org.apache.log4j.Logger;
 import server.HtmlParser;
 import server.MyHtml;
 import server.MyHttpServer;
-import server.StreamHandler;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public abstract class MyHttpHandler implements HttpHandler {
     private MyHttpServer myHttpServer;
@@ -35,42 +32,6 @@ public abstract class MyHttpHandler implements HttpHandler {
         }
         catch (IOException e) {
             LOGGER.log(Level.ERROR, "html sending error: " + MyHtml.ERROR_500, e);
-        }
-    }
-
-    public void createZipLog(File path, File zipFile) {
-        try {
-            if (!zipFile.exists()) {
-                if (zipFile.createNewFile()) {
-                    if (path.exists()) {
-                        ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zipFile));
-                        File[] files = path.listFiles();
-                        if (files != null) {
-                            for (File file : files) {
-                                FileInputStream fis = new FileInputStream(file);
-                                zout.putNextEntry(new ZipEntry(file.getName()));
-                                zout.write(StreamHandler.toByteArray(fis));
-                                fis.close();
-                            }
-                        }
-                        zout.close();
-                    }
-                }
-                else {
-                    LOGGER.log(Level.WARN, "Zip file was not created");
-                }
-            }
-            else {
-                if (zipFile.delete()) {
-                    createZipLog(path, zipFile);
-                }
-                else {
-                    LOGGER.log(Level.WARN, "Zip file cannot be deleted");
-                }
-            }
-        }
-        catch (IOException e) {
-            LOGGER.log(Level.ERROR, "Zip file creation error", e);
         }
     }
 
