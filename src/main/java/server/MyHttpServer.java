@@ -19,12 +19,12 @@ public class MyHttpServer {
 
     private static final Logger LOGGER = LogManager.getLogger(MyHttpServer.class);
 
-    public MyHttpServer(String path, int port) {
+    public MyHttpServer(String path, int port, int timeRangeSec) {
         this.path = path;
         this.port = port;
         try {
             httpServer = HttpServer.create();
-            serverState = new ServerState(this);
+            serverState = new ServerState(this, timeRangeSec);
         }
         catch (IOException e) {
             LOGGER.log(Level.ERROR, "Server creating error", e);

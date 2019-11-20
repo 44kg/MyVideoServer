@@ -18,7 +18,7 @@ public class Main {
         try {
             createDirectories(args[0]);
 
-            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]));
+            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]));
             myHttpServer.getHttpServer().setExecutor(Executors.newCachedThreadPool());
 
             myHttpServer.getHttpServer().bind(new InetSocketAddress(myHttpServer.getPort()), 0);

@@ -1,8 +1,5 @@
 package server;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import server.command.CommandExecutor;
 import server.command.CommandParser;
 
@@ -13,14 +10,13 @@ public class ServerState {
     private String clients;
     private String cameras;
 
-    private boolean isRunning;
-
+    private int timeRange;
+    private boolean updatable;
     private MyHttpServer myHttpServer;
 
-    private static final Logger LOGGER = LogManager.getLogger(ServerState.class);
-
-    public ServerState(MyHttpServer myHttpServer) {
+    public ServerState(MyHttpServer myHttpServer, int sec) {
         this.myHttpServer = myHttpServer;
+        this.timeRange = sec * 1000;
         start();
     }
 
@@ -42,23 +38,21 @@ public class ServerState {
     }
 
     public void start() {
-        isRunning = true;
+        updatable = true;
         Thread thread = new Thread(() -> {
-            try {
-                while (isRunning) {
+            long ms = System.currentTimeMillis();
+            while (updatable) {
+                if (System.currentTimeMillis() - ms > timeRange) {
                     update();
-                    Thread.sleep(3000);
+                    ms = System.currentTimeMillis();
                 }
-            }
-            catch (InterruptedException e) {
-                LOGGER.log(Level.ERROR, "Server state error", e);
             }
         });
         thread.start();
     }
 
     public void stop() {
-        isRunning = false;
+        updatable = false;
     }
 
     public String getCpuLoad() {
