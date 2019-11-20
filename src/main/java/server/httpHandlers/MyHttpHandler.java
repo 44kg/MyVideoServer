@@ -5,8 +5,8 @@ import com.sun.net.httpserver.HttpHandler;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.HtmlParser;
-import server.MyHtml;
+import server.html.HtmlParser;
+import server.html.MyHtml;
 import server.MyHttpServer;
 
 import java.io.*;

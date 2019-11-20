@@ -2,6 +2,8 @@ package server;
 
 import org.junit.Assert;
 import org.junit.Test;
+import server.html.HtmlParser;
+import server.html.MyHtml;
 
 import java.util.ArrayList;
 import java.util.List;

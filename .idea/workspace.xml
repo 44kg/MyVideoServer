@@ -2,14 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="Переписал тесты.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/server/ServerState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/command/CommandExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/CommandParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/command/CommandParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/HtmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/HtmlParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/MyHtml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/MyHtml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerLogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerLogs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerRestart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerRestart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/MyHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/MyHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/server/CommandExecutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/CommandExecutorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/server/CommandParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/CommandParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/server/HtmlParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/HtmlParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/server/MyHtmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/MyHtmlTest.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +49,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Log4j hello world" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.34411764" />
@@ -54,12 +66,24 @@
       <recent name="$PROJECT_DIR$/src/main/resources/html" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager" selected="JAR Application.MyServer-1.0-SNAPSHOT.jar">
     <configuration name="CommandParserTest.parseArchiveSizeTest4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.html.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -75,7 +99,7 @@
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.html.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -91,7 +115,7 @@
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.html.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,7 +131,7 @@
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.html.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -146,18 +170,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -168,6 +180,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570197319696</updated>
+      <workItem from="1574277416148" duration="586000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Executor, избавился от класса HttpHandlers.">
       <created>1573482923846</created>
@@ -206,6 +219,9 @@
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -269,10 +285,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1573389307924" />
-    <state x="605" y="212" width="777" height="803" key="CommitChangelistDialog2" timestamp="1573752609981">
+    <state x="605" y="212" width="777" height="803" key="CommitChangelistDialog2" timestamp="1573828502168">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="605" y="212" width="777" height="803" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1573752609981" />
+    <state x="605" y="212" width="777" height="803" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1573828502168" />
     <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1573130039234">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -309,14 +325,14 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1571773484566" />
-    <state x="411" y="206" width="1024" height="845" key="SettingsEditor" timestamp="1572945915949">
+    <state x="411" y="206" width="1024" height="845" key="SettingsEditor" timestamp="1574018142715">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1572945915949" />
-    <state x="610" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1573822344230">
+    <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1574018142715" />
+    <state x="610" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1574018123238">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="610" y="306" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1573822344230" />
+    <state x="610" y="306" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1574018123238" />
     <state x="761" y="472" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1573739298044">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

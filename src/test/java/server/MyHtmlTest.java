@@ -2,6 +2,7 @@ package server;
 
 import org.junit.Assert;
 import org.junit.Test;
+import server.html.MyHtml;
 
 public class MyHtmlTest {
     @Test

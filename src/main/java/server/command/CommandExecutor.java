@@ -1,4 +1,4 @@
-package server;
+package server.command;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;

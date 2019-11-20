@@ -1,8 +1,9 @@
-package server;
+package server.html;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import server.StreamHandler;
 
 import java.io.InputStream;
 import java.util.*;
