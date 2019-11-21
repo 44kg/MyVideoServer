@@ -1,28 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="Переписал тесты.">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/server/db/DatabaseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/command/CommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/CommandParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/command/CommandParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/HtmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/HtmlParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/MyHtml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/MyHtml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerRestart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerRestart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/MyHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/MyHttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/CommandExecutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/CommandExecutorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/CommandParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/CommandParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/HtmlParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/HtmlParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/MyHtmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/server/MyHtmlTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
+        <item name="extensions" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,10 +103,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Examples/MyChat2" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.34411764" />
@@ -145,7 +206,7 @@
     </configuration>
     <configuration name="MyServer-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/target/MyServer-1.0-SNAPSHOT.jar" />
-      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080" />
+      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080 5" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2" />
     </configuration>
@@ -170,6 +231,26 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@73fd77fb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@73fd77fb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@43a7d2" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -180,7 +261,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570197319696</updated>
-      <workItem from="1574277416148" duration="586000" />
+      <workItem from="1574277416148" duration="15642000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Executor, избавился от класса HttpHandlers.">
       <created>1573482923846</created>
@@ -217,7 +298,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573752610657</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Разделил классы на packages">
+      <created>1574278171634</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574278171634</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Диапазон времени обновления состояния сервера о_О теперь подается в аргументы.">
+      <created>1574280324764</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1574280324764</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +337,9 @@
     <MESSAGE value="Исправил кодировку. &quot;Почистил&quot; код." />
     <MESSAGE value="Исправил ошибку в методе getArchiveSize" />
     <MESSAGE value="Переписал тесты." />
-    <option name="LAST_COMMIT_MESSAGE" value="Переписал тесты." />
+    <MESSAGE value="Разделил классы на packages" />
+    <MESSAGE value="Диапазон времени обновления состояния сервера о_О теперь подается в аргументы." />
+    <option name="LAST_COMMIT_MESSAGE" value="Диапазон времени обновления состояния сервера о_О теперь подается в аргументы." />
   </component>
   <component name="WindowStateProjectService">
     <state x="539" y="207" width="898" height="690" key="#LinuxCommandParserTest" timestamp="1572946002090">

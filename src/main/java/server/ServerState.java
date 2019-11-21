@@ -35,6 +35,8 @@ public class ServerState {
         response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CONNECTIONS);
         cameras = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CAMERAS);
         clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
+
+        saveToDatabase();
     }
 
     public void start() {
@@ -53,6 +55,15 @@ public class ServerState {
 
     public void stop() {
         updatable = false;
+    }
+
+    private void saveToDatabase() {
+        float cpuLoad = Float.parseFloat(this.cpuLoad.substring(0, this.cpuLoad.length() - 1));
+        float freeSpace = Float.parseFloat(this.freeSpace.substring(0, this.freeSpace.length() - 2));
+        float archiveSize = Float.parseFloat(this.archiveSize.substring(0, this.archiveSize.length() - 2));
+        int clients = Integer.parseInt(this.clients);
+        int cameras = Integer.parseInt(this.cameras);
+        myHttpServer.getDatabaseService().insertState(cpuLoad, freeSpace, archiveSize, clients, cameras);
     }
 
     public String getCpuLoad() {
