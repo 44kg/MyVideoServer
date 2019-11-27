@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import server.db.DatabaseService;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.sql.Date;
 
 public class MyHttpServer {
     private String path;
@@ -26,8 +29,8 @@ public class MyHttpServer {
         this.port = port;
         try {
             httpServer = HttpServer.create();
-            serverState = new ServerState(this, timeRangeSec);
             databaseService = new DatabaseService();
+            serverState = new ServerState(this, timeRangeSec);
         }
         catch (IOException e) {
             LOGGER.log(Level.ERROR, "Server creating error", e);

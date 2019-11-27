@@ -6,13 +6,20 @@
     </head>
  <body>
   <H1>stn-videoserver</H1>
-    <P><button><a href = "../restart">Перезапустить сервер</a></button><button>
-        <a href = "../logs">Скачать логи</a></button></p></P>
+    <p><button><a href = "../restart">Перезапустить сервер</a></button>
+        <button><a href = "../logs">Скачать логи</a></button></p>
   <H2>Состояние:</H2>
-    <P>Загрузка CPU: $cpu </P>
-    <P>Свободное место на диске: $freespace </P>
-    <P>Размер архива: $archivesize</P>
-    <P>Подключенные камеры: $cameras</P>
-    <P>Подключенные клиенты: $clients</P>
+    <p>Загрузка CPU: $cpu </p>
+    <p>Свободное место на диске: $freespace </p>
+    <p>Размер архива: $archivesize</p>
+    <p>Подключенные камеры: $cameras</p>
+    <p>Подключенные клиенты: $clients</p>
+    <p>Статистика:</p>
+    <form action="../statistics" method="post">
+      <p>От:<input type="date" name="date_start" value="2019-11-21"><input type="time" name="time_start" value="14:30:14"/></p>
+      <p>До:<input type="date" name="date_end" value="2019-11-22"><input type="time" name="time_end" value="18:36:02"/></p>
+      <p><button type="submit">Отправить</button><p/>
+    </form>
+    <p><button><a href="../reference_state">Назначить референсные значения</a></button></p>
  </body>
 </html>

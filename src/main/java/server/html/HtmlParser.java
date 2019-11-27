@@ -13,6 +13,8 @@ public class HtmlParser {
     public static final String HTML_REPLACE_CAMERAS = "$cameras";
     public static final String HTML_REPLACE_CLIENTS = "$clients";
     public static final String HTML_REPLACE_ERROR_INFO = "$info";
+    public static final String HTML_REPLACE_DATES = "$dates";
+    public static final String HTML_REPLACE_TABLE = "$table";
 
     private static final Logger LOGGER = LogManager.getLogger(HtmlParser.class);
 
@@ -33,5 +35,29 @@ public class HtmlParser {
             errorInfo = "";
         }
         return string.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
+    }
+
+    public static String parseStatistics(String string, String dates, List<List<String>> table) {
+        StringBuilder tableHtml = new StringBuilder();
+        if (table != null) {
+            for (List<String> parts : table) {
+                tableHtml.append("<tr>");
+                for (String part : parts) {
+                    tableHtml.append("<td align=\"center\" width=150><small>").append(part).append("</small></td>");
+                }
+                tableHtml.append("</tr>");
+            }
+        }
+        return string.replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
+    }
+
+    public static String parseReferenceState(String string, List<String> states) {
+        String newString = string;
+        String replaceable;
+        for (int i = 0; i < 5 ; i++) {
+            replaceable = "$0" + (i + 1);
+            newString = newString.replace(replaceable, states.get(i));
+        }
+        return newString;
     }
 }

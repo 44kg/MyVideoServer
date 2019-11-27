@@ -11,6 +11,8 @@ import java.util.*;
 public class MyHtml {
     public static final String ADMIN = "admin.html";
     public static final String ERROR_500 = "error500.html";
+    public static final String STATISTICS = "statistics.html";
+    public static final String REFERENCE_STATE = "reference_state.html";
 
     public static final String HTML_PACKAGE = "html/";
 
@@ -19,6 +21,8 @@ public class MyHtml {
         HTML_NAMES_LIST = new ArrayList<>();
         HTML_NAMES_LIST.add(ADMIN);
         HTML_NAMES_LIST.add(ERROR_500);
+        HTML_NAMES_LIST.add(STATISTICS);
+        HTML_NAMES_LIST.add(REFERENCE_STATE);
     }
 
     private static final Logger LOGGER = LogManager.getLogger(MyHtml.class);

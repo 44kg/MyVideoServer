@@ -4,6 +4,8 @@ public class HttpConstants {
     public static final String ADMIN = "/admin";
     public static final String LOGS = "/logs";
     public static final String RESTART = "/restart";
+    public static final String STATISTICS = "/statistics";
+    public static final String REFERENCE_STATE = "/reference_state";
 
     public static final String ACCEPT_ENCODING_KEY = "Accept-encoding";
     public static final String ACCEPT_ENCODING_VALUE = "gzip, deflate";

@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/server/db/DatabaseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerReferenceState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerStatistics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/html/reference_state.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/html/statistics.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/db/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/db/DatabaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/html/HtmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/HtmlParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/html/MyHtml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/MyHtml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/html/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/html/admin.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +80,10 @@
         <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="test_db: database" type="162271b6:PgImplModel$Database" />
-        <item name="extensions" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="server_state_db: table" type="69fad909:PgImplModel$LocalTable" />
       </path>
     </expand>
     <select />
@@ -81,6 +91,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML4 File" />
         <option value="Class" />
       </list>
     </option>
@@ -96,6 +107,9 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectId" id="1Rk3ZG1RW6s9ojA7iWgUit8Dz0Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -104,6 +118,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML4 File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -238,12 +253,17 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@73fd77fb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ff968b45" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@73fd77fb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@43a7d2" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ff968b45" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@770aa2bd" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ff968b45" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@62995220" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -261,7 +281,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570197319696</updated>
-      <workItem from="1574277416148" duration="15642000" />
+      <workItem from="1574277416148" duration="15918000" />
+      <workItem from="1574331576500" duration="1085000" />
+      <workItem from="1574374477214" duration="685000" />
+      <workItem from="1574429505745" duration="13476000" />
+      <workItem from="1574536187586" duration="3752000" />
+      <workItem from="1574618741047" duration="5104000" />
+      <workItem from="1574685497255" duration="22078000" />
+      <workItem from="1574862749574" duration="1475000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Executor, избавился от класса HttpHandlers.">
       <created>1573482923846</created>
@@ -312,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574280324764</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Создал класс DatabaseService. Написал INSERT метод.">
+      <created>1574298403165</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1574298403166</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +373,8 @@
     <MESSAGE value="Переписал тесты." />
     <MESSAGE value="Разделил классы на packages" />
     <MESSAGE value="Диапазон времени обновления состояния сервера о_О теперь подается в аргументы." />
-    <option name="LAST_COMMIT_MESSAGE" value="Диапазон времени обновления состояния сервера о_О теперь подается в аргументы." />
+    <MESSAGE value="Создал класс DatabaseService. Написал INSERT метод." />
+    <option name="LAST_COMMIT_MESSAGE" value="Создал класс DatabaseService. Написал INSERT метод." />
   </component>
   <component name="WindowStateProjectService">
     <state x="539" y="207" width="898" height="690" key="#LinuxCommandParserTest" timestamp="1572946002090">

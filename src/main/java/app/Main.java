@@ -26,8 +26,9 @@ public class Main {
             myHttpServer.getHttpServer().createContext(HttpConstants.ADMIN, new HttpHandlerAdmin(myHttpServer));
             myHttpServer.getHttpServer().createContext(HttpConstants.LOGS, new HttpHandlerLogs(myHttpServer));
             myHttpServer.getHttpServer().createContext(HttpConstants.RESTART, new HttpHandlerRestart(myHttpServer));
-
-
+            myHttpServer.getHttpServer().createContext(HttpConstants.STATISTICS, new HttpHandlerStatistics(myHttpServer));
+            myHttpServer.getHttpServer().createContext(HttpConstants.REFERENCE_STATE, new HttpHandlerReferenceState(myHttpServer));
+            
             myHttpServer.getHttpServer().start();
             LOGGER.log(Level.INFO, "Server started");
         }
