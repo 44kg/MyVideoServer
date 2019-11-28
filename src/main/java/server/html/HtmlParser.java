@@ -18,26 +18,26 @@ public class HtmlParser {
 
     private static final Logger LOGGER = LogManager.getLogger(HtmlParser.class);
 
-    public static String parseAdmin(String string, List<String> replaces) {
-        if (replaces.size() == 5 && string != null) {
-            return string.replace(HTML_REPLACE_CPU, replaces.get(0)).replace(HTML_REPLACE_FREE_SPACE, replaces.get(1))
+    public static String parseAdmin(String html, List<String> replaces) {
+        if (replaces.size() == 5 && html != null) {
+            return html.replace(HTML_REPLACE_CPU, replaces.get(0)).replace(HTML_REPLACE_FREE_SPACE, replaces.get(1))
                     .replace(HTML_REPLACE_ARCHIVE_SIZE, replaces.get(2)).replace(HTML_REPLACE_CAMERAS, replaces.get(3))
                     .replace(HTML_REPLACE_CLIENTS, replaces.get(4));
         }
         else {
             LOGGER.log(Level.WARN, "Wrong argument for parsing admin.html");
-            return string;
+            return html;
         }
     }
 
-    public static String parseError500(String string, String errorInfo) {
+    public static String parseError500(String html, String errorInfo) {
         if (errorInfo == null) {
             errorInfo = "";
         }
-        return string.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
+        return html.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
     }
 
-    public static String parseStatistics(String string, String dates, List<List<String>> table) {
+    public static String parseStatistics(String html, String dates, List<List<String>> table, List<String> avgStates) {
         StringBuilder tableHtml = new StringBuilder();
         if (table != null) {
             for (List<String> parts : table) {
@@ -48,16 +48,19 @@ public class HtmlParser {
                 tableHtml.append("</tr>");
             }
         }
-        return string.replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
+        return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
     }
 
-    public static String parseReferenceState(String string, List<String> states) {
-        String newString = string;
+    public static String parseReferenceState(String html, List<String> states) {
+        return pasteNumberedList(html, states);
+    }
+
+    private static String pasteNumberedList(String html, List<String> list) {
         String replaceable;
-        for (int i = 0; i < 5 ; i++) {
+        for (int i = 0; i < list.size(); i++) {
             replaceable = "$0" + (i + 1);
-            newString = newString.replace(replaceable, states.get(i));
+            html = html.replace(replaceable, list.get(i));
         }
-        return newString;
+        return html;
     }
 }

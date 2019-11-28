@@ -1,25 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;  charset=utf-8">
-        <title>stn-videoserver</title>
-    </head>
- <body>
-  <H1>stn-videoserver</H1>
-    <p><button><a href = "../restart">Перезапустить сервер</a></button>
+<head>
+    <meta charset="UTF-8">
+    <title>stn-videoserver</title>
+</head>
+<body>
+    <h1 align="center">stn-videoserver</h1>
+    <p align="center"><button><a href = "../restart">Перезапустить сервер</a></button><br>
         <button><a href = "../logs">Скачать логи</a></button></p>
-  <H2>Состояние:</H2>
-    <p>Загрузка CPU: $cpu </p>
-    <p>Свободное место на диске: $freespace </p>
-    <p>Размер архива: $archivesize</p>
-    <p>Подключенные камеры: $cameras</p>
-    <p>Подключенные клиенты: $clients</p>
-    <p>Статистика:</p>
+    <h3 align="center">Состояние:</h3>
+    <table align="center">
+        <tr>
+            <td align="right">Загрузка CPU:</td>
+            <td align="center">$cpu</td>
+        </tr>
+        <tr>
+            <td align="right">Свободное место на диске:</td>
+            <td align="center">$freespace</td>
+        </tr>
+        <tr>
+            <td align="right">Размер архива:</td>
+            <td align="center">$archivesize</td>
+        </tr>
+        <tr>
+            <td align="right">Подключенные камеры:</td>
+            <td align="center">$cameras</td>
+        </tr>
+        <tr>
+            <td align="right">Подключенные клиенты:</td>
+            <td align="center">$clients</td>
+        </tr>
+    </table>
+    <p><b>Статистика:</b></p>
     <form action="../statistics" method="post">
-      <p>От:<input type="date" name="date_start" value="2019-11-21"><input type="time" name="time_start" value="14:30:14"/></p>
-      <p>До:<input type="date" name="date_end" value="2019-11-22"><input type="time" name="time_end" value="18:36:02"/></p>
-      <p><button type="submit">Отправить</button><p/>
+        <p>От:<input type="date" name="date_start" value="2019-11-21"><input type="time" name="time_start" value="14:30"/><br>
+        До:<input type="date" name="date_end" value="2019-11-22"><input type="time" name="time_end" value="18:36"/><br>
+        <button type="submit">Получить отчет</button></p>
     </form>
     <p><button><a href="../reference_state">Назначить референсные значения</a></button></p>
- </body>
+</body>
 </html>
