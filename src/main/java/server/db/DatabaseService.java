@@ -13,8 +13,18 @@ public class DatabaseService {
 
     public static final String DB_DRIVER = "org.postgresql.Driver";
     public static final String DB_CONNECTION = "jdbc:postgresql://localhost:5432/test_db";
+    public static final String DB_TABLE = "server_state_db";
     public static final String DB_USER = "mainkaif";
     public static final String DB_PASS = "11111";
+
+    public static final String COL_ID = "id";
+    public static final String COL_DATE = "date";
+    public static final String COL_TIME = "time";
+    public static final String COL_CPU_LOAD = "cpu_load";
+    public static final String COL_FREE_SPACE = "free_space";
+    public static final String COL_ARCHIVE_SIZE = "archive_size";
+    public static final String COL_CLIENTS = "clients";
+    public static final String COL_CAMERAS = "cameras";
 
     private static final Logger LOGGER = LogManager.getLogger(DatabaseService.class);
 
@@ -52,6 +62,7 @@ public class DatabaseService {
         try (PreparedStatement statement = con.prepareStatement
                 ("INSERT INTO server_state_db (date, time, cpu_load, free_space, archive_size," +
                         " clients, cameras) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+
             statement.setDate(1, new Date(System.currentTimeMillis()));
             statement.setTime(2, new Time(System.currentTimeMillis()));
             statement.setFloat(3, cpuLoad);
@@ -85,15 +96,14 @@ public class DatabaseService {
         }
     }
 
-    public List<List<String>> selectState(Date minDate, Time minTime, Date maxDate, Time maxTime) {
+    public List<List<String>> selectState(Date minDate, Date maxDate) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT * FROM server_state_db WHERE date >= ? AND time >= ? AND date <= ? AND time <= ?")) {
+                ("SELECT * FROM server_state_db WHERE date >= ? AND date <= ?")) {
             statement.setDate(1, minDate);
-            statement.setTime(2, minTime);
-            statement.setDate(3, maxDate);
-            statement.setTime(4, maxTime);
+            statement.setDate(2, maxDate);
             ResultSet resultSet = statement.executeQuery();
+            LOGGER.log(Level.TRACE, resultSet.toString());
             return createList(resultSet);
         }
         catch (SQLException e) {
@@ -113,6 +123,20 @@ public class DatabaseService {
         }
         catch (SQLException e) {
             LOGGER.log(Level.ERROR, "Database SELECT error", e);
+            return null;
+        }
+    }
+
+    public String getAvgState(String col) {
+        openConnection();
+        try (PreparedStatement statement = con.prepareStatement
+                ("SELECT AVG(" + col + ") AS avg_state FROM " + DB_TABLE + " WHERE id > 0")) {
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return String.valueOf(resultSet.getFloat("avg_state"));
+        }
+        catch (SQLException e) {
+            LOGGER.log(Level.ERROR, "Database SELECT AVG error", e);
             return null;
         }
     }
