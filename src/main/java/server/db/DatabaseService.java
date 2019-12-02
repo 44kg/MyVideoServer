@@ -4,6 +4,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,12 +99,12 @@ public class DatabaseService {
 
     public List<List<String>> selectState(Date minDate, Date maxDate) {
         openConnection();
+        LOGGER.log(Level.TRACE, "012");
         try (PreparedStatement statement = con.prepareStatement
                 ("SELECT * FROM server_state_db WHERE date >= ? AND date <= ?")) {
             statement.setDate(1, minDate);
             statement.setDate(2, maxDate);
             ResultSet resultSet = statement.executeQuery();
-            LOGGER.log(Level.TRACE, resultSet.toString());
             return createList(resultSet);
         }
         catch (SQLException e) {
@@ -133,7 +134,8 @@ public class DatabaseService {
                 ("SELECT AVG(" + col + ") AS avg_state FROM " + DB_TABLE + " WHERE id > 0")) {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            return String.valueOf(resultSet.getFloat("avg_state"));
+            float f = BigDecimal.valueOf(resultSet.getFloat("avg_state")).setScale(1, BigDecimal.ROUND_HALF_DOWN).floatValue();
+            return String.valueOf(f);
         }
         catch (SQLException e) {
             LOGGER.log(Level.ERROR, "Database SELECT AVG error", e);
@@ -154,6 +156,7 @@ public class DatabaseService {
             parts.add(String.valueOf(resultSet.getInt("clients")));
             parts.add(String.valueOf(resultSet.getInt("cameras")));
         }
+        LOGGER.log(Level.TRACE, lines.size());
         return lines;
     }
 }

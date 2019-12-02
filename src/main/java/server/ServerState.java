@@ -49,6 +49,7 @@ public class ServerState {
 
     public void start() {
         updatable = true;
+        update();
         readReferences();
         Thread thread = new Thread(() -> {
             long ms = System.currentTimeMillis();

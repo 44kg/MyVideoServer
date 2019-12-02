@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,32 +29,38 @@ public class HttpHandlerStatistics extends MyHttpHandler {
         try {
             String string = MyHtml.getHtmlAsString(MyHtml.STATISTICS);
             String body = StreamHandler.toString(httpExchange.getRequestBody());
+            LOGGER.log(Level.TRACE, body);
             if (!body.equals("")) {
-                body = body.replace("%3A", ":");
-                LOGGER.log(Level.TRACE, body);
                 String[] parts = body.split("&");
                 for (int i = 0; i < parts.length; i++) {
-                    LOGGER.log(Level.TRACE, parts[i]);
                     parts[i] = parts[i].substring(parts[i].indexOf("=") + 1);
-                    LOGGER.log(Level.TRACE, parts[i]);
                 }
-                LOGGER.log(Level.TRACE, string);
-                List<List<String>> table = getMyHttpServer().getDatabaseService().selectState(Date.valueOf(parts[0]), Date.valueOf(parts[2]));
-
-                LOGGER.log(Level.TRACE, string);
-
+                LOGGER.log(Level.TRACE, parts[0]);
+                LOGGER.log(Level.TRACE, parts[1]);
+                List<List<String>> table = getMyHttpServer().getDatabaseService().selectState(Date.valueOf(parts[0]), Date.valueOf(parts[1]));
                 List<String> avgStates = new ArrayList<>();
+                LOGGER.log(Level.TRACE, avgStates.size());
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CPU_LOAD));
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_FREE_SPACE));
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_ARCHIVE_SIZE));
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CLIENTS));
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CAMERAS));
 
-                string = HtmlParser.parseStatistics(string, parts[0] + " " + parts[1] + " - " + parts[2] + " " + parts[3], table, avgStates);
+                List<String> refStates = new ArrayList<>();
+                refStates.add(getMyHttpServer().getServerState().getCpuLoadRef());
+                refStates.add(getMyHttpServer().getServerState().getFreeSpaceRef());
+                refStates.add(getMyHttpServer().getServerState().getArchiveSizeRef());
+                refStates.add(getMyHttpServer().getServerState().getClientsRef());
+                refStates.add(getMyHttpServer().getServerState().getCamerasRef());
+                for (String s : refStates) {
+                    LOGGER.log(Level.TRACE, s);
+                }
+
+                string = HtmlParser.parseStatistics(string, parts[0] + " - " + parts[1], table, avgStates, refStates);
                 LOGGER.log(Level.TRACE, string);
             }
             else {
-                string = HtmlParser.parseStatistics(string, "", null, null);
+                string = HtmlParser.parseStatistics(string, "", null, null, null);
             }
             byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
 
