@@ -35,6 +35,16 @@ public abstract class MyHttpHandler implements HttpHandler {
         }
     }
 
+    public void sendResponse(HttpExchange httpExchange, String html) throws IOException{
+        byte[] bytes = html.getBytes(StandardCharsets.UTF_8);
+        httpExchange.getResponseHeaders().add(HttpConstants.ACCEPT_ENCODING_KEY, HttpConstants.ACCEPT_ENCODING_VALUE);
+        httpExchange.getResponseHeaders().add(HttpConstants.ACCEPT_KEY, HttpConstants.ACCEPT_VALUE);
+        httpExchange.sendResponseHeaders(200, bytes.length);
+        OutputStream os = httpExchange.getResponseBody();
+        os.write(bytes);
+        os.close();
+    }
+
     public MyHttpServer getMyHttpServer() {
         return myHttpServer;
     }

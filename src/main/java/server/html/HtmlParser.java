@@ -61,7 +61,6 @@ public class HtmlParser {
                 tableHtml.append("</tr>");
             }
         }
-        LOGGER.log(Level.TRACE, tableHtml.toString());
         return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
     }
 

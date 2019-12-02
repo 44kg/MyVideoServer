@@ -61,8 +61,9 @@ public class DatabaseService {
     public void insertState(float cpuLoad, float freeSpace, float archiveSize, int clients, int cameras) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("INSERT INTO server_state_db (date, time, cpu_load, free_space, archive_size," +
-                        " clients, cameras) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                ("INSERT INTO " + DB_TABLE + " (" + COL_DATE + ", " + COL_TIME + ", " + COL_CPU_LOAD + ", "
+                        + COL_FREE_SPACE + ", " + COL_ARCHIVE_SIZE + ", " + COL_CLIENTS + ", " + COL_CAMERAS
+                        + ") VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
             statement.setDate(1, new Date(System.currentTimeMillis()));
             statement.setTime(2, new Time(System.currentTimeMillis()));
@@ -81,7 +82,9 @@ public class DatabaseService {
     public void updateState(int id, float cpuLoad, float freeSpace, float archiveSize, int clients, int cameras) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("UPDATE server_state_db SET cpu_load = ?, free_space = ?, archive_size = ?, clients = ?, cameras = ? WHERE id = ?")) {
+                ("UPDATE " + DB_TABLE + " SET " + COL_CPU_LOAD + " = ?, " + COL_FREE_SPACE + " = ?, "
+                        + COL_ARCHIVE_SIZE + " = ?, " + COL_CLIENTS + " = ?, " + COL_CAMERAS + " = ? WHERE "
+                        + COL_ID + " = ?")) {
 
             statement.setFloat(1, cpuLoad);
             statement.setFloat(2, freeSpace);
@@ -99,9 +102,8 @@ public class DatabaseService {
 
     public List<List<String>> selectState(Date minDate, Date maxDate) {
         openConnection();
-        LOGGER.log(Level.TRACE, "012");
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT * FROM server_state_db WHERE date >= ? AND date <= ?")) {
+                ("SELECT * FROM " + DB_TABLE + " WHERE " + COL_DATE + " >= ? AND " + COL_DATE + " <= ?")) {
             statement.setDate(1, minDate);
             statement.setDate(2, maxDate);
             ResultSet resultSet = statement.executeQuery();
@@ -116,7 +118,7 @@ public class DatabaseService {
     public List<List<String>> selectState(int idStart, int idEnd) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT * FROM server_state_db WHERE id >= ? AND id <= ?")) {
+                ("SELECT * FROM " + DB_TABLE + " WHERE " + COL_ID + " >= ? AND " + COL_ID + " <= ?")) {
             statement.setInt(1, idStart);
             statement.setInt(2, idEnd);
             ResultSet resultSet = statement.executeQuery();
@@ -128,10 +130,13 @@ public class DatabaseService {
         }
     }
 
-    public String getAvgState(String col) {
+    public String getAvgState(String col, Date minDate, Date maxDate) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT AVG(" + col + ") AS avg_state FROM " + DB_TABLE + " WHERE id > 0")) {
+                ("SELECT AVG(" + col + ") AS avg_state FROM " + DB_TABLE + " WHERE " + COL_ID + " > 0 AND "
+                        + COL_DATE + " >= ? AND " + COL_DATE + " <= ?")) {
+            statement.setDate(1, minDate);
+            statement.setDate(2, maxDate);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             float f = BigDecimal.valueOf(resultSet.getFloat("avg_state")).setScale(1, BigDecimal.ROUND_HALF_DOWN).floatValue();
@@ -156,7 +161,6 @@ public class DatabaseService {
             parts.add(String.valueOf(resultSet.getInt("clients")));
             parts.add(String.valueOf(resultSet.getInt("cameras")));
         }
-        LOGGER.log(Level.TRACE, lines.size());
         return lines;
     }
 }

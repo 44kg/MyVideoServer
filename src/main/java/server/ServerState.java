@@ -69,9 +69,6 @@ public class ServerState {
 
     public void readReferences() {
         List<String> ref = readReferenceStates();
-        for (String string : ref) {
-            System.out.println(string);
-        }
         cpuLoadRef = ref.get(2);
         freeSpaceRef = ref.get(3);
         archiveSizeRef = ref.get(4);
