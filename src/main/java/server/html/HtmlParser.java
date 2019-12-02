@@ -20,14 +20,14 @@ public class HtmlParser {
     private static final Logger LOGGER = LogManager.getLogger(HtmlParser.class);
 
     public static String parseAdmin(String html, List<String> replaces) {
-        if (replaces.size() == 5 && html != null) {
+        if (html != null && replaces.size() == 5) {
             String date = new Date(System.currentTimeMillis()).toString();
             return html.replace(HTML_REPLACE_CPU, replaces.get(0)).replace(HTML_REPLACE_FREE_SPACE, replaces.get(1))
                     .replace(HTML_REPLACE_ARCHIVE_SIZE, replaces.get(2)).replace(HTML_REPLACE_CAMERAS, replaces.get(3))
                     .replace(HTML_REPLACE_CLIENTS, replaces.get(4)).replace(HTML_REPLACE_DATES, date);
         }
         else {
-            LOGGER.log(Level.WARN, "Wrong argument for parsing admin.html");
+            LOGGER.log(Level.WARN, "Wrong argument for parsing " + MyHtml.ADMIN);
             return html;
         }
     }
@@ -40,30 +40,39 @@ public class HtmlParser {
     }
 
     public static String parseStatistics(String html, String dates, List<List<String>> table, List<String> avgStates, List<String> refStates) {
-        StringBuilder tableHtml = new StringBuilder();
-        if (table != null) {
-            for (List<String> parts : table) {
-                tableHtml.append("<tr>");
-                for (int i = 0; i < parts.size(); i++) {
-                    tableHtml.append("<td align=\"center\" width=150><small>");
-                    if (i >= 2) {
-                        if (isOutOfRef(parts.get(i), refStates, i - 2)) {
-                            tableHtml.append("<font color=\"red\">");
+        if (html == null) {
+            return null;
+        }
+        else {
+            StringBuilder tableHtml = new StringBuilder();
+            if (table.size() > 0 && avgStates.size() == 5 && refStates.size() == 5) {
+                for (List<String> parts : table) {
+                    tableHtml.append("<tr>");
+                    for (int i = 0; i < parts.size(); i++) {
+                        tableHtml.append("<td align=\"center\" width=150><small>");
+                        if (i >= 2) {
+                            if (isOutOfRef(parts.get(i), refStates, i - 2)) {
+                                tableHtml.append("<font color=\"red\">");
+                            }
                         }
-                    }
-                    tableHtml.append(parts.get(i));
-                    if (i >= 2) {
-                        if (isOutOfRef(parts.get(i), refStates, i - 2)) {
-                            tableHtml.append("</font>");
+                        tableHtml.append(parts.get(i));
+                        if (i >= 2) {
+                            if (isOutOfRef(parts.get(i), refStates, i - 2)) {
+                                tableHtml.append("</font>");
+                            }
                         }
-                    }
-                    tableHtml.append("</small></td>");
+                        tableHtml.append("</small></td>");
 
+                    }
+                    tableHtml.append("</tr>");
                 }
-                tableHtml.append("</tr>");
+                return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
+            }
+            else {
+                LOGGER.log(Level.WARN, "Wrong arguments for parsing " + MyHtml.STATISTICS);
+                return html;
             }
         }
-        return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
     }
 
     private static boolean isOutOfRef(String value, List<String> refValues, int index) {
@@ -76,7 +85,13 @@ public class HtmlParser {
     }
 
     public static String parseReferenceState(String html, List<String> states) {
-        return pasteNumberedList(html, states);
+        if (html != null && states.size() == 5) {
+            return pasteNumberedList(html, states);
+        }
+        else {
+            LOGGER.log(Level.WARN, "Wrong argument for parsing " + MyHtml.REFERENCE_STATE);
+            return html;
+        }
     }
 
     private static String pasteNumberedList(String html, List<String> list) {
