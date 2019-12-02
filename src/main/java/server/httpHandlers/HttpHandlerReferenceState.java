@@ -10,7 +10,6 @@ import server.html.HtmlParser;
 import server.html.MyHtml;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HttpHandlerReferenceState extends MyHttpHandler {
@@ -39,12 +38,7 @@ public class HttpHandlerReferenceState extends MyHttpHandler {
                 getMyHttpServer().getServerState().readReferences();
             }
 
-            List<String> list = new ArrayList<>();
-            list.add(getMyHttpServer().getServerState().getCpuLoadRef());
-            list.add(getMyHttpServer().getServerState().getFreeSpaceRef());
-            list.add(getMyHttpServer().getServerState().getArchiveSizeRef());
-            list.add(getMyHttpServer().getServerState().getCamerasRef());
-            list.add(getMyHttpServer().getServerState().getClientsRef());
+            List<String> list = getMyHttpServer().getServerState().getRefStates();
 
             string = HtmlParser.parseReferenceState(string, list);
             sendResponse(httpExchange, string);

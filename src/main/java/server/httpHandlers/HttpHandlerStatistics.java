@@ -11,8 +11,6 @@ import server.html.HtmlParser;
 import server.html.MyHtml;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +42,9 @@ public class HttpHandlerStatistics extends MyHttpHandler {
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CLIENTS, minDate, maxDate));
                 avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CAMERAS, minDate, maxDate));
 
-                List<String> refStates = new ArrayList<>();
-                refStates.add(getMyHttpServer().getServerState().getCpuLoadRef());
-                refStates.add(getMyHttpServer().getServerState().getFreeSpaceRef());
-                refStates.add(getMyHttpServer().getServerState().getArchiveSizeRef());
-                refStates.add(getMyHttpServer().getServerState().getClientsRef());
-                refStates.add(getMyHttpServer().getServerState().getCamerasRef());
+                List<String> list = getMyHttpServer().getServerState().getRefStates();
 
-                string = HtmlParser.parseStatistics(string, parts[0] + " - " + parts[1], table, avgStates, refStates);
-                LOGGER.log(Level.TRACE, string);
+                string = HtmlParser.parseStatistics(string, parts[0] + " - " + parts[1], table, avgStates, list);
             }
             else {
                 string = HtmlParser.parseStatistics(string, "", null, null, null);

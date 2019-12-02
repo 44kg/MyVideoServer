@@ -3,6 +3,7 @@ package server.html;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import java.sql.Date;
 
 import java.util.List;
 
@@ -20,9 +21,10 @@ public class HtmlParser {
 
     public static String parseAdmin(String html, List<String> replaces) {
         if (replaces.size() == 5 && html != null) {
+            String date = new Date(System.currentTimeMillis()).toString();
             return html.replace(HTML_REPLACE_CPU, replaces.get(0)).replace(HTML_REPLACE_FREE_SPACE, replaces.get(1))
                     .replace(HTML_REPLACE_ARCHIVE_SIZE, replaces.get(2)).replace(HTML_REPLACE_CAMERAS, replaces.get(3))
-                    .replace(HTML_REPLACE_CLIENTS, replaces.get(4));
+                    .replace(HTML_REPLACE_CLIENTS, replaces.get(4)).replace(HTML_REPLACE_DATES, date);
         }
         else {
             LOGGER.log(Level.WARN, "Wrong argument for parsing admin.html");

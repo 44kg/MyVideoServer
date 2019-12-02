@@ -7,9 +7,6 @@ import org.apache.log4j.Logger;
 import server.db.DatabaseService;
 
 import java.io.IOException;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.sql.Date;
 
 public class MyHttpServer {
     private String path;

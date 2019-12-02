@@ -3,6 +3,7 @@ package server;
 import server.command.CommandExecutor;
 import server.command.CommandParser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServerState {
@@ -109,23 +110,13 @@ public class ServerState {
         return cameras;
     }
 
-    public String getCpuLoadRef() {
-        return cpuLoadRef;
-    }
-
-    public String getFreeSpaceRef() {
-        return freeSpaceRef;
-    }
-
-    public String getArchiveSizeRef() {
-        return archiveSizeRef;
-    }
-
-    public String getClientsRef() {
-        return clientsRef;
-    }
-
-    public String getCamerasRef() {
-        return camerasRef;
+    public List<String> getRefStates() {
+        List<String> list = new ArrayList<>();
+        list.add(cpuLoadRef);
+        list.add(freeSpaceRef);
+        list.add(archiveSizeRef);
+        list.add(clientsRef);
+        list.add(camerasRef);
+        return list;
     }
 }
