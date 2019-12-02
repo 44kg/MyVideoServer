@@ -14,7 +14,7 @@ public class DatabaseService {
 
     public static final String DB_DRIVER = "org.postgresql.Driver";
     public static final String DB_CONNECTION = "jdbc:postgresql://localhost:5432/test_db";
-    public static final String DB_TABLE = "server_state_db";
+    public static final String DB_TABLE = "states_db";
     public static final String DB_USER = "mainkaif";
     public static final String DB_PASS = "11111";
 
