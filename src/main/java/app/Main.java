@@ -15,10 +15,12 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
+        String[] db = {args[3], args[4], args[5], args[6]};
+
         try {
             createDirectories(args[0]);
 
-            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+            MyHttpServer myHttpServer = new MyHttpServer(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), db);
             myHttpServer.getHttpServer().setExecutor(Executors.newCachedThreadPool());
 
             myHttpServer.getHttpServer().bind(new InetSocketAddress(myHttpServer.getPort()), 0);

@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseService {
+    private String connection;
+    private String table;
+    private String user;
+    private String pass;
+
     private Connection con;
 
     public static final String DB_DRIVER = "org.postgresql.Driver";
-    public static final String DB_CONNECTION = "jdbc:postgresql://localhost:5432/test_db";
-    public static final String DB_TABLE = "states_db";
-    public static final String DB_USER = "mainkaif";
-    public static final String DB_PASS = "11111";
 
     public static final String COL_ID = "id";
     public static final String COL_DATE = "date";
@@ -29,7 +30,11 @@ public class DatabaseService {
 
     private static final Logger LOGGER = LogManager.getLogger(DatabaseService.class);
 
-    public DatabaseService() {
+    public DatabaseService(String connection, String table, String user, String pass) {
+        this.connection = connection;
+        this.table = table;
+        this.user = user;
+        this.pass = pass;
         con = null;
         openConnection();
     }
@@ -38,7 +43,7 @@ public class DatabaseService {
         try {
             if (con == null || con.isClosed()) {
                 Class.forName(DB_DRIVER);
-                con = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASS);
+                con = DriverManager.getConnection(connection, user, pass);
                 LOGGER.log(Level.INFO, "Connected to database");
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -61,7 +66,7 @@ public class DatabaseService {
     public void insertState(float cpuLoad, float freeSpace, float archiveSize, int clients, int cameras) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("INSERT INTO " + DB_TABLE + " (" + COL_DATE + ", " + COL_TIME + ", " + COL_CPU_LOAD + ", "
+                ("INSERT INTO " + table + " (" + COL_DATE + ", " + COL_TIME + ", " + COL_CPU_LOAD + ", "
                         + COL_FREE_SPACE + ", " + COL_ARCHIVE_SIZE + ", " + COL_CLIENTS + ", " + COL_CAMERAS
                         + ") VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
@@ -82,7 +87,7 @@ public class DatabaseService {
     public void updateState(int id, float cpuLoad, float freeSpace, float archiveSize, int clients, int cameras) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("UPDATE " + DB_TABLE + " SET " + COL_CPU_LOAD + " = ?, " + COL_FREE_SPACE + " = ?, "
+                ("UPDATE " + table + " SET " + COL_CPU_LOAD + " = ?, " + COL_FREE_SPACE + " = ?, "
                         + COL_ARCHIVE_SIZE + " = ?, " + COL_CLIENTS + " = ?, " + COL_CAMERAS + " = ? WHERE "
                         + COL_ID + " = ?")) {
 
@@ -103,7 +108,7 @@ public class DatabaseService {
     public List<List<String>> selectState(Date minDate, Date maxDate) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT * FROM " + DB_TABLE + " WHERE " + COL_DATE + " >= ? AND " + COL_DATE + " <= ?")) {
+                ("SELECT * FROM " + table + " WHERE " + COL_DATE + " >= ? AND " + COL_DATE + " <= ?")) {
             statement.setDate(1, minDate);
             statement.setDate(2, maxDate);
             ResultSet resultSet = statement.executeQuery();
@@ -118,7 +123,7 @@ public class DatabaseService {
     public List<List<String>> selectState(int idStart, int idEnd) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT * FROM " + DB_TABLE + " WHERE " + COL_ID + " >= ? AND " + COL_ID + " <= ?")) {
+                ("SELECT * FROM " + table + " WHERE " + COL_ID + " >= ? AND " + COL_ID + " <= ?")) {
             statement.setInt(1, idStart);
             statement.setInt(2, idEnd);
             ResultSet resultSet = statement.executeQuery();
@@ -133,7 +138,7 @@ public class DatabaseService {
     public String getAvgState(String col, Date minDate, Date maxDate) {
         openConnection();
         try (PreparedStatement statement = con.prepareStatement
-                ("SELECT AVG(" + col + ") AS avg_state FROM " + DB_TABLE + " WHERE " + COL_ID + " > 0 AND "
+                ("SELECT AVG(" + col + ") AS avg_state FROM " + table + " WHERE " + COL_ID + " > 0 AND "
                         + COL_DATE + " >= ? AND " + COL_DATE + " <= ?")) {
             statement.setDate(1, minDate);
             statement.setDate(2, maxDate);

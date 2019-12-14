@@ -21,12 +21,12 @@ public class MyHttpServer {
 
     private static final Logger LOGGER = LogManager.getLogger(MyHttpServer.class);
 
-    public MyHttpServer(String path, int port, int timeRangeSec) {
+    public MyHttpServer(String path, int port, int timeRangeSec, String[] db) {
         this.path = path;
         this.port = port;
         try {
             httpServer = HttpServer.create();
-            databaseService = new DatabaseService();
+            databaseService = new DatabaseService(db[0], db[1], db[2], db[3]);
             serverState = new ServerState(this, timeRangeSec);
         }
         catch (IOException e) {
