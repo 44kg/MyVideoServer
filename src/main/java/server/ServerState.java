@@ -1,12 +1,17 @@
 package server;
 
 import app.Main;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import server.command.CommandExecutor;
 import server.command.CommandParser;
 import server.db.DatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 public class ServerState {
     private String cpuLoad;
@@ -21,10 +26,11 @@ public class ServerState {
     private String clientsRef;
     private String camerasRef;
 
-    private int timeRange;
-    private boolean updatable;
+    private volatile int timeRange;
     private DatabaseService dbs;
     private String path;
+
+    private static final Logger LOGGER = LogManager.getLogger(ServerState.class);
 
     public ServerState(DatabaseService dbs, String path, int sec) {
         this.dbs = dbs;
@@ -50,18 +56,19 @@ public class ServerState {
         clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
 
         saveToDatabase();
+        LOGGER.log(Level.TRACE, "TRACE");
     }
 
     public void start() {
-        updatable = true;
         update();
         readReferences();
         Thread thread = new Thread(() -> {
-            long ms = System.currentTimeMillis();
-            while (updatable) {
-                if (System.currentTimeMillis() - ms > timeRange) {
-                    update();
-                    ms = System.currentTimeMillis();
+            while (true) {
+                update();
+                try {
+                    sleep(timeRange);
+                } catch (InterruptedException e) {
+                    LOGGER.log(Level.ERROR, "InterruptedException", e);
                 }
             }
         });
