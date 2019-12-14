@@ -15,90 +15,85 @@ public class CommandParser {
     public static final String PORT_FOR_CLIENTS = "9000";
 
     public static String parseCpuLoad(String response, int numberOfCPUs) {
-        if (response != null && numberOfCPUs != 0) {
-            BigDecimal result = new BigDecimal("0.0");
-            String[] lines = response.split("\n");
-            if (lines.length > 6) {
-                int index = lines[6].indexOf("%CPU");
-                String addendum;
-                for (int i = 7; i < lines.length; i++) {
-                    addendum = lines[i].substring(index, index + 4).trim().replace(",", ".");
-                    if (addendum.equals("0.0"))
-                        break;
-                    result = result.add(new BigDecimal(addendum));
-                }
-                result = result.divide(new BigDecimal(String.valueOf(numberOfCPUs)), new MathContext(3));
-                return result.toString() + "%";
+        if (response == null || numberOfCPUs == 0) return "";
+        BigDecimal result = new BigDecimal("0.0");
+        String[] lines = response.split("\n");
+        if (lines.length > 6) {
+            int index = lines[6].indexOf("%CPU");
+            String addendum;
+            for (int i = 7; i < lines.length; i++) {
+                addendum = lines[i].substring(index, index + 4).trim().replace(",", ".");
+                if (addendum.equals("0.0"))
+                    break;
+                result = result.add(new BigDecimal(addendum));
             }
+            result = result.divide(new BigDecimal(String.valueOf(numberOfCPUs)), new MathContext(3));
+            return result.toString() + "%";
         }
         return "";
     }
 
     public static String parseNumberOfCPUs(String response) {
-        if (response != null) {
-            String[] lines = response.split("\n");
-            String numberOfCPUs = "";
-            for (String line : lines) {
-                if (line.startsWith("CPU(s):")) {
-                    numberOfCPUs = line.substring(7).trim();
-                    break;
-                }
+        String numberOfCPUs = "";
+        if (response == null) return numberOfCPUs;
+
+        String[] lines = response.split("\n");
+        for (String line : lines) {
+            if (line.startsWith("CPU(s):")) {
+                numberOfCPUs = line.substring(7).trim();
+                break;
             }
-            return numberOfCPUs;
         }
-        return "";
+        return numberOfCPUs;
     }
 
     public static String parseFreeSpace(String response) {
-        if (response != null) {
-            String[] lines = response.split("\n");
-            if (lines.length >= 2) {
-                String line = lines[1];
-                for (int i = 0; i < 3; i++) {
-                    line = line.substring(line.indexOf(" ")).trim();
-                }
-                line = line.substring(0, line.indexOf(" "));
-                return line + "B";
+        if (response == null) return "";
+        String[] lines = response.split("\n");
+        if (lines.length >= 2) {
+            String line = lines[1];
+            for (int i = 0; i < 3; i++) {
+                line = line.substring(line.indexOf(" ")).trim();
             }
+            line = line.substring(0, line.indexOf(" "));
+            return line + "B";
         }
         return "";
     }
 
     public static String parseArchiveSize(String response) {
-        if (response != null) {
-            String[] lines = response.split("\n");
-            StringBuilder builder = new StringBuilder(lines[lines.length - 1]);
-            if (builder.toString().contains("M")) {
-                builder.delete(builder.indexOf("M") + 1, builder.length());
-            }
-            if (builder.toString().endsWith("M")) {
-                builder.append("B");
-                return builder.toString();
-            }
+        if (response == null) return "";
+        String[] lines = response.split("\n");
+        StringBuilder builder = new StringBuilder(lines[lines.length - 1]);
+        if (builder.toString().contains("M")) {
+            builder.delete(builder.indexOf("M") + 1, builder.length());
+        }
+        if (builder.toString().endsWith("M")) {
+            builder.append("B");
+            return builder.toString();
         }
         return "";
     }
 
     public static String parseNumberOfConnections(String response, String port) {
-        if (response != null && port != null) {
-            String[] lines = response.split("\n");
-            if (lines.length > 3) {
-                int counter = 0;
-                for (String line : lines) {
-                    if (line.startsWith("tcp")) {
-                        for (int i = 0; i < 4; i++) {
-                            line = line.substring(line.indexOf(" ")).trim();
-                        }
-                        if (line.substring(line.indexOf(":") + 1, line.indexOf(" ")).equals(port)) {
-                            counter++;
-                        }
+        if (response == null || port == null) return "";
+        String[] lines = response.split("\n");
+        if (lines.length > 3) {
+            int counter = 0;
+            for (String line : lines) {
+                if (line.startsWith("tcp")) {
+                    for (int i = 0; i < 4; i++) {
+                        line = line.substring(line.indexOf(" ")).trim();
                     }
-                    if (line.startsWith("unix")) {
-                        break;
+                    if (line.substring(line.indexOf(":") + 1, line.indexOf(" ")).equals(port)) {
+                        counter++;
                     }
                 }
-                return Integer.toString(counter);
+                if (line.startsWith("unix")) {
+                    break;
+                }
             }
+            return Integer.toString(counter);
         }
         return "";
     }
