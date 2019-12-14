@@ -6,27 +6,27 @@ import server.command.CommandExecutor;
 
 public class CommandExecutorTest {
     @Test
-    public void runLinuxCommandTest1() {
-        Assert.assertEquals("Hello World\n", CommandExecutor.runLinuxCommand("echo Hello World"));
+    public void executeCommandTest1() {
+        Assert.assertEquals("Hello World\n", CommandExecutor.executeCommand("echo Hello World"));
     }
 
     @Test
-    public void runLinuxCommandTest2() {
-        Assert.assertEquals("", CommandExecutor.runLinuxCommand("enyWrongCommand"));
+    public void executeCommandTest2() {
+        Assert.assertEquals("", CommandExecutor.executeCommand("enyWrongCommand"));
     }
 
     @Test
-    public void runLinuxCommandTest3() {
-        Assert.assertEquals("", CommandExecutor.runLinuxCommand(null));
+    public void executeCommandTest3() {
+        Assert.assertEquals("", CommandExecutor.executeCommand(null));
     }
 
     @Test
-    public void runLinuxCommandTest4() {
-        Assert.assertEquals("", CommandExecutor.runLinuxCommand(""));
+    public void executeCommandTest4() {
+        Assert.assertEquals("", CommandExecutor.executeCommand(""));
     }
 
     @Test
-    public void runLinuxCommandTest5() {
-        Assert.assertEquals("", CommandExecutor.runLinuxCommand("    "));
+    public void executeCommandTest5() {
+        Assert.assertEquals("", CommandExecutor.executeCommand("    "));
     }
 }

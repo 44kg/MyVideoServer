@@ -7,10 +7,7 @@ import org.apache.log4j.Logger;
 import server.MyHttpServer;
 import server.StreamHandler;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -46,38 +43,19 @@ public class HttpHandlerLogs extends MyHttpHandler {
     }
 
     public void createZipLog(File path, File zipFile) {
-        try {
-            if (!zipFile.exists()) {
-                if (zipFile.createNewFile()) {
-                    if (path.exists()) {
-                        ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zipFile));
-                        File[] files = path.listFiles();
-                        if (files != null) {
-                            for (File file : files) {
-                                FileInputStream fis = new FileInputStream(file);
-                                zout.putNextEntry(new ZipEntry(file.getName()));
-                                zout.write(StreamHandler.toByteArray(fis));
-                                fis.close();
-                            }
-                        }
-                        zout.close();
+        if (path == null || zipFile == null) return;
+        File[] files = path.listFiles();
+        if (files != null && files.length > 0) {
+            try (ZipOutputStream zipOutStr = new ZipOutputStream(new FileOutputStream(zipFile))) {
+                for (File file : files) {
+                    try (FileInputStream fileInpStr = new FileInputStream(file)) {
+                        zipOutStr.putNextEntry(new ZipEntry(file.getName()));
+                        zipOutStr.write(StreamHandler.toByteArray(fileInpStr));
                     }
                 }
-                else {
-                    LOGGER.log(Level.WARN, "Zip file was not created");
-                }
+            } catch (IOException e) {
+                LOGGER.log(Level.ERROR, "Zip file creation error", e);
             }
-            else {
-                if (zipFile.delete()) {
-                    createZipLog(path, zipFile);
-                }
-                else {
-                    LOGGER.log(Level.WARN, "Zip file cannot be deleted");
-                }
-            }
-        }
-        catch (IOException e) {
-            LOGGER.log(Level.ERROR, "Zip file creation error", e);
         }
     }
 }

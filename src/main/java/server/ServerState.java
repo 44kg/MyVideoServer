@@ -30,18 +30,18 @@ public class ServerState {
     }
 
     public void update() {
-        String numberOfCPUs = CommandParser.parseNumberOfCPUs(CommandExecutor.runLinuxCommand(CommandParser.COMMAND_NUM_OF_CPUS));
-        String response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CPU_LOAD);
+        String numberOfCPUs = CommandParser.parseNumberOfCPUs(CommandExecutor.executeCommand(CommandParser.COMMAND_NUM_OF_CPUS));
+        String response = CommandExecutor.executeCommand(CommandParser.COMMAND_CPU_LOAD);
         cpuLoad = CommandParser.parseCpuLoad(response, Integer.parseInt(numberOfCPUs));
 
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_FREE_SPACE);
+        response = CommandExecutor.executeCommand(CommandParser.COMMAND_FREE_SPACE);
         freeSpace = CommandParser.parseFreeSpace(response);
 
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_ARCHIVE_SIZE
+        response = CommandExecutor.executeCommand(CommandParser.COMMAND_ARCHIVE_SIZE
                 + myHttpServer.getPath() + MyHttpServer.DIRECTORY_ARCHIVE);
         archiveSize = CommandParser.parseArchiveSize(response);
 
-        response = CommandExecutor.runLinuxCommand(CommandParser.COMMAND_CONNECTIONS);
+        response = CommandExecutor.executeCommand(CommandParser.COMMAND_CONNECTIONS);
         cameras = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CAMERAS);
         clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
 

@@ -11,28 +11,30 @@ import java.io.InputStreamReader;
 public class CommandExecutor {
     private static final Logger LOGGER = LogManager.getLogger(CommandExecutor.class);
 
-    public static String runLinuxCommand(String command) {
-        if (command == null || command.trim().equals("")) {
-            return "";
-        }
-        else {
-            StringBuilder builder = new StringBuilder();
-            try {
-                String line;
-                Process process = Runtime.getRuntime().exec(command);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                while ((line = reader.readLine()) != null)
-                    builder.append(line).append("\n");
-                process.waitFor();
-                if (process.exitValue() == 1) {
-                    LOGGER.log(Level.WARN, "Linux command: " + command + ". Exit value = 1");
-                }
-                process.destroy();
-            } catch (IOException | InterruptedException e) {
-                LOGGER.log(Level.ERROR, "Linux command execution error", e);
-                return "";
+    public static String executeCommand(String command) {
+        if (command == null || command.trim().equals("")) return "";
+        StringBuilder result = new StringBuilder();
+        Process process = null;
+        BufferedReader reader = null;
+        try {
+            process = Runtime.getRuntime().exec(command);
+            reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result.append(line).append("\n");
             }
-            return builder.toString();
+        } catch (IOException e) {
+            LOGGER.log(Level.ERROR, "Linux command execution error", e);
+        } finally {
+            try {
+                if (process != null) process.destroy();
+                if (reader != null) reader.close();
+            } catch (IOException e) {
+                LOGGER.log(Level.ERROR, "Linux command execution error", e);
+            }
         }
+        return result.toString();
     }
+
+
 }

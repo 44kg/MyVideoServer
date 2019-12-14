@@ -11,47 +11,48 @@ public class StreamHandler {
     private static final Logger LOGGER = LogManager.getLogger(StreamHandler.class);
 
     public static void transmitData(InputStream inputStream, OutputStream outputStream) {
-        if (inputStream != null && outputStream != null) {
-            byte[] buffer = new byte[1024];
-            int length;
+        byte[] buffer = new byte[1024];
+        int length;
+        try {
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            LOGGER.log(Level.ERROR, "Stream cannot be read", e);
+        } finally {
             try {
-                while ((length = inputStream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, length);
-                }
                 inputStream.close();
                 outputStream.close();
-            }
-            catch (IOException e) {
-                LOGGER.log(Level.ERROR, "Stream cannot be read", e);
+            } catch (IOException e) {
+                LOGGER.log(Level.ERROR, "Stream closing error", e);
             }
         }
     }
 
     public static byte[] toByteArray(InputStream inputStream) {
-        if (inputStream != null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int length;
-            try {
-                while ((length = inputStream.read(buffer)) > 0) {
-                    baos.write(buffer, 0, length);
-                }
-                inputStream.close();
-                baos.close();
-            }
-            catch (IOException e) {
-                LOGGER.log(Level.ERROR, "Stream cannot be read", e);
-                return null;
+        if (inputStream == null) return null;
+
+        byte[] buffer = new byte[1024];
+        int length;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            while ((length = inputStream.read(buffer)) > 0) {
+                baos.write(buffer, 0, length);
             }
             return baos.toByteArray();
+        } catch (IOException e) {
+            LOGGER.log(Level.ERROR, "Stream cannot be read", e);
+            return null;
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                LOGGER.log(Level.ERROR, "Stream closing error", e);
+            }
         }
-        else return null;
     }
 
     public static String toString(InputStream inputStream) {
-        if (inputStream != null) {
-            return new String(toByteArray(inputStream), StandardCharsets.UTF_8);
-        }
-        else return null;
+        if (inputStream == null) return null;
+        return new String(toByteArray(inputStream), StandardCharsets.UTF_8);
     }
 }

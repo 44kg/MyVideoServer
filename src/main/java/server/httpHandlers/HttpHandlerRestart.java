@@ -34,6 +34,6 @@ public class HttpHandlerRestart extends MyHttpHandler{
             LOGGER.log(Level.ERROR, "Restart server error", e);
             sendErrorResponse(httpExchange, "Сервер не был перезапущен.");
         }
-        CommandExecutor.runLinuxCommand(CommandParser.COMMAND_RESTART_SERVER);
+        CommandExecutor.executeCommand(CommandParser.COMMAND_RESTART_SERVER);
     }
 }
