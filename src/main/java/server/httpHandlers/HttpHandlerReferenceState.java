@@ -4,8 +4,9 @@ import com.sun.net.httpserver.HttpExchange;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.MyHttpServer;
+import server.ServerState;
 import server.StreamHandler;
+import server.db.DatabaseService;
 import server.html.HtmlParser;
 import server.html.HTML;
 
@@ -13,10 +14,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class HttpHandlerReferenceState extends MyHttpHandler {
+    private DatabaseService dbs;
+    private ServerState serverState;
+
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlerReferenceState.class);
 
-    public HttpHandlerReferenceState(MyHttpServer myHttpServer) {
-        super(myHttpServer);
+    public HttpHandlerReferenceState(DatabaseService dbs, ServerState serverState) {
+        super();
+        this.dbs = dbs;
+        this.serverState = serverState;
     }
 
     @Override
@@ -34,11 +40,11 @@ public class HttpHandlerReferenceState extends MyHttpHandler {
                 float archiveSizeRef = Float.parseFloat(parts[2]);
                 int clientsRef = Integer.parseInt(parts[3]);
                 int camerasRef = Integer.parseInt(parts[4]);
-                getMyHttpServer().getDatabaseService().updateState(0, cpuLoadRef, freeSpaceRef, archiveSizeRef, clientsRef, camerasRef);
-                getMyHttpServer().getServerState().readReferences();
+                dbs.updateState(0, cpuLoadRef, freeSpaceRef, archiveSizeRef, clientsRef, camerasRef);
+                serverState.readReferences();
             }
 
-            List<String> list = getMyHttpServer().getServerState().getRefStates();
+            List<String> list = serverState.getRefStates();
 
             string = HtmlParser.parseReferenceState(string, list);
             sendResponse(httpExchange, string);

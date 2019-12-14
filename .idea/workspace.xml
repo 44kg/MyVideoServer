@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="">
+    <list default="true" id="b801008e-782f-467f-ba74-cadd17c06893" name="Default Changelist" comment="Методы с try-catch-finally блоками.">
+      <change beforePath="$PROJECT_DIR$/.idea/MyVideoServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyVideoServer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/MyHttpServer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/db/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/db/DatabaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/html/HtmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/html/HtmlParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerLogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerLogs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerReferenceState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerReferenceState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerRestart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerRestart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/HttpHandlerStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/httpHandlers/MyHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/httpHandlers/MyHttpHandler.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,41 +36,6 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="PostgreSQL - postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="test_db: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
@@ -106,7 +75,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Examples/MyChat2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -116,7 +85,8 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.34411764" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+    <property name="sql.rename.search.for.storage.occurrences" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -126,86 +96,71 @@
       <recent name="$PROJECT_DIR$/src/main/resources/html" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="JAR Application.MyServer-1.0-SNAPSHOT.jar">
-    <configuration name="CommandParserTest.parseArchiveSizeTest4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommandExecutorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.html.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.CommandParserTest" />
-      <option name="METHOD_NAME" value="parseArchiveSizeTest4" />
+      <option name="MAIN_CLASS_NAME" value="server.CommandExecutorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommandExecutorTest.runCommandTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.CommandExecutorTest" />
+      <option name="METHOD_NAME" value="runCommandTest1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandParserTest.parseFreeSpaceTest4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommandParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.html.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
       <option name="MAIN_CLASS_NAME" value="server.CommandParserTest" />
-      <option name="METHOD_NAME" value="parseFreeSpaceTest4" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandParserTest.parseNumberOfCPUsTest4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HtmlParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.html.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.CommandParserTest" />
-      <option name="METHOD_NAME" value="parseNumberOfCPUsTest4" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommandParserTest.parseNumberOfConnectionsTest4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MyServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.html.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.CommandParserTest" />
-      <option name="METHOD_NAME" value="parseNumberOfConnectionsTest4" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="server.HtmlParserTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="MyServer-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/target/MyServer-1.0-SNAPSHOT.jar" />
-      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080 30" />
+      <option name="PROGRAM_PARAMETERS" value="$USER_HOME$/stn/stn-videoserver 8080 60 jdbc:postgresql://localhost:5432/test_db states_db mainkaif 11111" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2" />
     </configuration>
@@ -215,44 +170,31 @@
     </configuration>
     <list>
       <item itemvalue="JAR Application.MyServer-1.0-SNAPSHOT.jar" />
-      <item itemvalue="JUnit.CommandParserTest.parseNumberOfCPUsTest4" />
-      <item itemvalue="JUnit.CommandParserTest.parseFreeSpaceTest4" />
-      <item itemvalue="JUnit.CommandParserTest.parseArchiveSizeTest4" />
-      <item itemvalue="JUnit.CommandParserTest.parseNumberOfConnectionsTest4" />
+      <item itemvalue="JUnit.HtmlParserTest" />
+      <item itemvalue="JUnit.CommandExecutorTest.runCommandTest1" />
+      <item itemvalue="JUnit.CommandExecutorTest" />
+      <item itemvalue="JUnit.CommandParserTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.MyServer-1.0-SNAPSHOT.jar" />
-        <item itemvalue="JUnit.CommandParserTest.parseNumberOfConnectionsTest4" />
-        <item itemvalue="JUnit.CommandParserTest.parseArchiveSizeTest4" />
-        <item itemvalue="JUnit.CommandParserTest.parseFreeSpaceTest4" />
-        <item itemvalue="JUnit.CommandParserTest.parseNumberOfCPUsTest4" />
+        <item itemvalue="JUnit.CommandExecutorTest" />
+        <item itemvalue="JUnit.CommandParserTest" />
+        <item itemvalue="JUnit.CommandExecutorTest.runCommandTest1" />
+        <item itemvalue="JUnit.HtmlParserTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ae3e8de7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ae3e8de7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5b0ea66a" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ae3e8de7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4ba99d87" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
-          <select />
-        </treeState>
-      </serviceView>
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
     </option>
   </component>
   <component name="SvnConfiguration">
@@ -275,7 +217,12 @@
       <workItem from="1574862749574" duration="1475000" />
       <workItem from="1574938661614" duration="14042000" />
       <workItem from="1575031769348" duration="12329000" />
-      <workItem from="1575285251449" duration="5179000" />
+      <workItem from="1575285251449" duration="20347000" />
+      <workItem from="1575550175946" duration="6294000" />
+      <workItem from="1575744350598" duration="152000" />
+      <workItem from="1575748734774" duration="478000" />
+      <workItem from="1576161731451" duration="14014000" />
+      <workItem from="1576336175303" duration="15230000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Executor, избавился от класса HttpHandlers.">
       <created>1573482923846</created>
@@ -354,7 +301,56 @@
       <option name="project" value="LOCAL" />
       <updated>1575288907748</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Рефакторинг">
+      <created>1575294469827</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575294469827</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Рефакторинг. Подкорректировал html">
+      <created>1575297697106</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575297697106</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Добавил тесты для новых методов HtmlParser.">
+      <created>1575306087913</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575306087913</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Добавил другой файл дампа">
+      <created>1575557281678</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1575557281678</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Методы с try-catch-finally блоками. Исправил.">
+      <created>1576343121459</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1576343121459</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Класс MyHtml переименовал в HTML. Убрал один метод. Избавился от статического листа.">
+      <created>1576344211227</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1576344211227</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Вынес константы из DatabaseService в параметры main.">
+      <created>1576346080778</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1576346080778</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,7 +381,14 @@
     <MESSAGE value="Подкорректировал HTMLки." />
     <MESSAGE value="Написал метод для получения среднего значения." />
     <MESSAGE value="Сделал выделение цветом значений превышающих референсные" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал выделение цветом значений превышающих референсные" />
+    <MESSAGE value="Рефакторинг" />
+    <MESSAGE value="Рефакторинг. Подкорректировал html" />
+    <MESSAGE value="Добавил тесты для новых методов HtmlParser." />
+    <MESSAGE value="Добавил другой файл дампа" />
+    <MESSAGE value="Методы с try-catch-finally блоками. Исправил." />
+    <MESSAGE value="Класс MyHtml переименовал в HTML. Убрал один метод. Избавился от статического листа." />
+    <MESSAGE value="Вынес константы из DatabaseService в параметры main." />
+    <option name="LAST_COMMIT_MESSAGE" value="Вынес константы из DatabaseService в параметры main." />
   </component>
   <component name="WindowStateProjectService">
     <state x="539" y="207" width="898" height="690" key="#LinuxCommandParserTest" timestamp="1572946002090">
@@ -396,10 +399,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="867" height="677" key="#Project_Structure/67.27.1853.1053@67.27.1853.1053" timestamp="1571483562444" />
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1573825990168">
+    <state x="346" y="306" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576345872801">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1573825990168" />
+    <state x="346" y="306" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576345872801" />
     <state x="117" y="133" width="1653" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1572608443454">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -420,38 +423,38 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="746" y="413" width="494" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.1053@67.27.1853.1053" timestamp="1573478987150" />
-    <state x="558" y="27" width="860" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1573589058679">
+    <state x="558" y="27" width="860" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576344031103">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="558" y="27" width="860" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1573589058679" />
-    <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1573389307924">
+    <state x="558" y="27" width="860" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576344031103" />
+    <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576353448609">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1573389307924" />
-    <state x="605" y="212" width="777" height="803" key="CommitChangelistDialog2" timestamp="1573828502168">
+    <state x="726" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576353448609" />
+    <state x="687" y="121" width="777" height="803" key="CommitChangelistDialog2" timestamp="1576346080339">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="605" y="212" width="777" height="803" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1573828502168" />
-    <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1573130039234">
+    <state x="687" y="121" width="777" height="803" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1576346080339" />
+    <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1575749191974">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1573130039234" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1573828270809">
+    <state x="794" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1575749191974" />
+    <state width="1807" height="277" key="GridCell.Tab.0.bottom" timestamp="1576353918517">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1573828270809" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1573828270809">
+    <state width="1807" height="277" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1576353918517" />
+    <state width="1807" height="277" key="GridCell.Tab.0.center" timestamp="1576353918517">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1573828270809" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1573828270808">
+    <state width="1807" height="277" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1576353918517" />
+    <state width="1807" height="277" key="GridCell.Tab.0.left" timestamp="1576353918516">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1573828270808" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1573828270809">
+    <state width="1807" height="277" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1576353918516" />
+    <state width="1807" height="277" key="GridCell.Tab.0.right" timestamp="1576353918517">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1573828270809" />
+    <state width="1807" height="277" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1576353918517" />
     <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1571773484567">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -468,22 +471,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1807" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1571773484566" />
-    <state x="411" y="206" width="1024" height="845" key="SettingsEditor" timestamp="1574018142715">
+    <state x="411" y="206" width="1024" height="845" key="SettingsEditor" timestamp="1576164091518">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1574018142715" />
-    <state x="610" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1574018123238">
+    <state x="411" y="206" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1576164091518" />
+    <state x="610" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1576336175401">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="610" y="306" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1574018123238" />
+    <state x="610" y="306" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576336175401" />
     <state x="761" y="472" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1573739298044">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="761" y="472" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1573739298044" />
-    <state x="302" y="154" width="1372" height="796" key="new project wizard" timestamp="1573130092042">
+    <state x="302" y="154" width="1372" height="796" key="new project wizard" timestamp="1575749221054">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="302" y="154" width="1372" height="796" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1573130092042" />
+    <state x="302" y="154" width="1372" height="796" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1575749221054" />
     <state x="962" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1572107527089">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

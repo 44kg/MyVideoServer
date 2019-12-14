@@ -6,7 +6,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import server.command.CommandExecutor;
 import server.command.CommandParser;
-import server.MyHttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,8 +14,8 @@ import java.nio.charset.StandardCharsets;
 public class HttpHandlerRestart extends MyHttpHandler{
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlerRestart.class);
 
-    public HttpHandlerRestart(MyHttpServer myHttpServer) {
-        super(myHttpServer);
+    public HttpHandlerRestart() {
+        super();
     }
 
     @Override

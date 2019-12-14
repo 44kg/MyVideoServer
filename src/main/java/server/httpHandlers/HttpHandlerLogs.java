@@ -1,10 +1,10 @@
 package server.httpHandlers;
 
+import app.Main;
 import com.sun.net.httpserver.HttpExchange;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.MyHttpServer;
 import server.StreamHandler;
 
 import java.io.*;
@@ -12,19 +12,22 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class HttpHandlerLogs extends MyHttpHandler {
+    private String path;
+
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlerLogs.class);
 
-    public HttpHandlerLogs(MyHttpServer myHttpServer) {
-        super(myHttpServer);
+    public HttpHandlerLogs(String path) {
+        super();
+        this.path = path;
     }
 
     @Override
     public void handle(HttpExchange httpExchange) {
-        String string = getMyHttpServer().getPath() + HttpConstants.LOGS;
+        String string = path + HttpConstants.LOGS;
         if (new File(string).exists()) {
             try {
-                File logPath = new File(getMyHttpServer().getPath() + HttpConstants.LOGS);
-                File zipFile = new File(getMyHttpServer().getPath() + MyHttpServer.FILE_LOG + ".zip");
+                File logPath = new File(path + HttpConstants.LOGS);
+                File zipFile = new File(path + Main.FILE_LOG + ".zip");
                 createZipLog(logPath, zipFile);
 
                 httpExchange.getResponseHeaders().add(HttpConstants.CONTENT_TYPE_KEY, HttpConstants.CONTENT_TYPE_VALUE);

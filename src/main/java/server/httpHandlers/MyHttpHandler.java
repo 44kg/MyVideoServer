@@ -7,19 +7,15 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import server.html.HtmlParser;
 import server.html.HTML;
-import server.MyHttpServer;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public abstract class MyHttpHandler implements HttpHandler {
-    private MyHttpServer myHttpServer;
 
     private static final Logger LOGGER = LogManager.getLogger(MyHttpHandler.class);
 
-    public MyHttpHandler(MyHttpServer myHttpServer) {
-        this.myHttpServer = myHttpServer;
-    }
+    public MyHttpHandler() {}
 
     public void sendErrorResponse(HttpExchange httpExchange, String errorInfo) {
         try {
@@ -43,9 +39,5 @@ public abstract class MyHttpHandler implements HttpHandler {
         OutputStream os = httpExchange.getResponseBody();
         os.write(bytes);
         os.close();
-    }
-
-    public MyHttpServer getMyHttpServer() {
-        return myHttpServer;
     }
 }

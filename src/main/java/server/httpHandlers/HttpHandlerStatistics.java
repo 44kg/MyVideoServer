@@ -4,7 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.MyHttpServer;
+import server.ServerState;
 import server.StreamHandler;
 import server.db.DatabaseService;
 import server.html.HtmlParser;
@@ -16,10 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HttpHandlerStatistics extends MyHttpHandler {
+    private DatabaseService dbs;
+    private ServerState serverState;
+
     private static final Logger LOGGER = LogManager.getLogger(HttpHandlerStatistics.class);
 
-    public HttpHandlerStatistics(MyHttpServer myHttpServer) {
-        super(myHttpServer);
+    public HttpHandlerStatistics(DatabaseService dbs, ServerState serverState) {
+        super();
+        this.dbs = dbs;
+        this.serverState = serverState;
     }
 
     @Override
@@ -34,15 +39,15 @@ public class HttpHandlerStatistics extends MyHttpHandler {
                 }
                 Date minDate = Date.valueOf(parts[0]);
                 Date maxDate = Date.valueOf(parts[1]);
-                List<List<String>> table = getMyHttpServer().getDatabaseService().selectState(minDate, maxDate);
+                List<List<String>> table = dbs.selectState(minDate, maxDate);
                 List<String> avgStates = new ArrayList<>();
-                avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CPU_LOAD, minDate, maxDate));
-                avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_FREE_SPACE, minDate, maxDate));
-                avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_ARCHIVE_SIZE, minDate, maxDate));
-                avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CLIENTS, minDate, maxDate));
-                avgStates.add(getMyHttpServer().getDatabaseService().getAvgState(DatabaseService.COL_CAMERAS, minDate, maxDate));
+                avgStates.add(dbs.getAvgState(DatabaseService.COL_CPU_LOAD, minDate, maxDate));
+                avgStates.add(dbs.getAvgState(DatabaseService.COL_FREE_SPACE, minDate, maxDate));
+                avgStates.add(dbs.getAvgState(DatabaseService.COL_ARCHIVE_SIZE, minDate, maxDate));
+                avgStates.add(dbs.getAvgState(DatabaseService.COL_CLIENTS, minDate, maxDate));
+                avgStates.add(dbs.getAvgState(DatabaseService.COL_CAMERAS, minDate, maxDate));
 
-                List<String> list = getMyHttpServer().getServerState().getRefStates();
+                List<String> list = serverState.getRefStates();
 
                 string = HtmlParser.parseStatistics(string, parts[0] + " - " + parts[1], table, avgStates, list);
             }

@@ -1,7 +1,9 @@
 package server;
 
+import app.Main;
 import server.command.CommandExecutor;
 import server.command.CommandParser;
+import server.db.DatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +23,13 @@ public class ServerState {
 
     private int timeRange;
     private boolean updatable;
-    private MyHttpServer myHttpServer;
+    private DatabaseService dbs;
+    private String path;
 
-    public ServerState(MyHttpServer myHttpServer, int sec) {
-        this.myHttpServer = myHttpServer;
+    public ServerState(DatabaseService dbs, String path, int sec) {
+        this.dbs = dbs;
         this.timeRange = sec * 1000;
+        this.path = path;
         start();
     }
 
@@ -38,7 +42,7 @@ public class ServerState {
         freeSpace = CommandParser.parseFreeSpace(response);
 
         response = CommandExecutor.executeCommand(CommandParser.COMMAND_ARCHIVE_SIZE
-                + myHttpServer.getPath() + MyHttpServer.DIRECTORY_ARCHIVE);
+                + path + Main.DIRECTORY_ARCHIVE);
         archiveSize = CommandParser.parseArchiveSize(response);
 
         response = CommandExecutor.executeCommand(CommandParser.COMMAND_CONNECTIONS);
@@ -64,10 +68,6 @@ public class ServerState {
         thread.start();
     }
 
-    public void stop() {
-        updatable = false;
-    }
-
     public void readReferences() {
         List<String> ref = readReferenceStates();
         cpuLoadRef = ref.get(2);
@@ -83,11 +83,11 @@ public class ServerState {
         float archiveSize = Float.parseFloat(this.archiveSize.substring(0, this.archiveSize.length() - 2));
         int clients = Integer.parseInt(this.clients);
         int cameras = Integer.parseInt(this.cameras);
-        myHttpServer.getDatabaseService().insertState(cpuLoad, freeSpace, archiveSize, clients, cameras);
+        dbs.insertState(cpuLoad, freeSpace, archiveSize, clients, cameras);
     }
 
     private List<String> readReferenceStates() {
-        return myHttpServer.getDatabaseService().selectState(0, 0).get(0);
+        return dbs.selectState(0, 0).get(0);
     }
 
     public String getCpuLoad() {
