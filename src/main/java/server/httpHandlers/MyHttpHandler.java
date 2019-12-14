@@ -6,7 +6,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import server.html.HtmlParser;
-import server.html.MyHtml;
+import server.html.HTML;
 import server.MyHttpServer;
 
 import java.io.*;
@@ -23,7 +23,7 @@ public abstract class MyHttpHandler implements HttpHandler {
 
     public void sendErrorResponse(HttpExchange httpExchange, String errorInfo) {
         try {
-            String string = MyHtml.getHtmlAsString(MyHtml.ERROR_500);
+            String string = HTML.getHtmlAsString(HTML.ERROR_500);
             string = HtmlParser.parseError500(string, errorInfo);
             httpExchange.sendResponseHeaders(500, 0);
             OutputStream os = httpExchange.getResponseBody();
@@ -31,7 +31,7 @@ public abstract class MyHttpHandler implements HttpHandler {
             os.close();
         }
         catch (IOException e) {
-            LOGGER.log(Level.ERROR, "html sending error: " + MyHtml.ERROR_500, e);
+            LOGGER.log(Level.ERROR, "html sending error: " + HTML.ERROR_500, e);
         }
     }
 

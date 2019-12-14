@@ -6,7 +6,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import server.html.HtmlParser;
-import server.html.MyHtml;
+import server.html.HTML;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class HttpHandlerAdmin extends MyHttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) {
         try {
-            String string = MyHtml.getHtmlAsString(MyHtml.ADMIN);
+            String string = HTML.getHtmlAsString(HTML.ADMIN);
 
             List<String> list = new ArrayList<>();
             list.add(getMyHttpServer().getServerState().getCpuLoad());
@@ -34,7 +34,7 @@ public class HttpHandlerAdmin extends MyHttpHandler {
             string = HtmlParser.parseAdmin(string, list);
             sendResponse(httpExchange, string);
         } catch (IOException e) {
-            LOGGER.log(Level.ERROR, "html sending error: " + MyHtml.ADMIN, e);
+            LOGGER.log(Level.ERROR, "html sending error: " + HTML.ADMIN, e);
             sendErrorResponse(httpExchange, "Не удалось загрузить страницу.");
         }
     }

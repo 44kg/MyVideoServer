@@ -3,7 +3,7 @@ package server;
 import org.junit.Assert;
 import org.junit.Test;
 import server.html.HtmlParser;
-import server.html.MyHtml;
+import server.html.HTML;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,10 @@ public class HtmlParserTest {
     private List<String> list;
 
     public HtmlParserTest() {
-        admin = MyHtml.getHtmlAsString(MyHtml.ADMIN);
-        statistics = MyHtml.getHtmlAsString(MyHtml.STATISTICS);
-        referenceStates = MyHtml.getHtmlAsString(MyHtml.REFERENCE_STATE);
-        error500 = MyHtml.getHtmlAsString(MyHtml.ERROR_500);
+        admin = HTML.getHtmlAsString(HTML.ADMIN);
+        statistics = HTML.getHtmlAsString(HTML.STATISTICS);
+        referenceStates = HTML.getHtmlAsString(HTML.REFERENCE_STATE);
+        error500 = HTML.getHtmlAsString(HTML.ERROR_500);
         list = new ArrayList<>();
         list.add("test1");
         list.add("test2");

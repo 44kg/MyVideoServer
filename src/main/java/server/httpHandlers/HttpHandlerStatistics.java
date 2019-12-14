@@ -8,7 +8,7 @@ import server.MyHttpServer;
 import server.StreamHandler;
 import server.db.DatabaseService;
 import server.html.HtmlParser;
-import server.html.MyHtml;
+import server.html.HTML;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -25,7 +25,7 @@ public class HttpHandlerStatistics extends MyHttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) {
         try {
-            String string = MyHtml.getHtmlAsString(MyHtml.STATISTICS);
+            String string = HTML.getHtmlAsString(HTML.STATISTICS);
             String body = StreamHandler.toString(httpExchange.getRequestBody());
             if (!body.equals("")) {
                 String[] parts = body.split("&");
@@ -52,7 +52,7 @@ public class HttpHandlerStatistics extends MyHttpHandler {
             sendResponse(httpExchange, string);
         }
         catch (IOException e) {
-            LOGGER.log(Level.ERROR, "html sending error: " + MyHtml.STATISTICS, e);
+            LOGGER.log(Level.ERROR, "html sending error: " + HTML.STATISTICS, e);
             sendErrorResponse(httpExchange, "Не удалось загрузить страницу.");
         }
     }

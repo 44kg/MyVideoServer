@@ -27,7 +27,7 @@ public class HtmlParser {
                     .replace(HTML_REPLACE_CLIENTS, replaces.get(4)).replace(HTML_REPLACE_DATES, date);
         }
         else {
-            LOGGER.log(Level.WARN, "Wrong argument for parsing " + MyHtml.ADMIN);
+            LOGGER.log(Level.WARN, "Wrong argument for parsing " + HTML.ADMIN);
             return html;
         }
     }
@@ -69,7 +69,7 @@ public class HtmlParser {
                 return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
             }
             else {
-                LOGGER.log(Level.WARN, "Wrong arguments for parsing " + MyHtml.STATISTICS);
+                LOGGER.log(Level.WARN, "Wrong arguments for parsing " + HTML.STATISTICS);
                 return html;
             }
         }
@@ -89,7 +89,7 @@ public class HtmlParser {
             return pasteNumberedList(html, states);
         }
         else {
-            LOGGER.log(Level.WARN, "Wrong argument for parsing " + MyHtml.REFERENCE_STATE);
+            LOGGER.log(Level.WARN, "Wrong argument for parsing " + HTML.REFERENCE_STATE);
             return html;
         }
     }

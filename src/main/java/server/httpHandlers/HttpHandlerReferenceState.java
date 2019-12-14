@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import server.MyHttpServer;
 import server.StreamHandler;
 import server.html.HtmlParser;
-import server.html.MyHtml;
+import server.html.HTML;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +22,7 @@ public class HttpHandlerReferenceState extends MyHttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) {
         try {
-            String string = MyHtml.getHtmlAsString(MyHtml.REFERENCE_STATE);
+            String string = HTML.getHtmlAsString(HTML.REFERENCE_STATE);
             String body = StreamHandler.toString(httpExchange.getRequestBody());
             if (!body.equals("")) {
                 String[] parts = body.split("&");
@@ -43,7 +43,7 @@ public class HttpHandlerReferenceState extends MyHttpHandler {
             string = HtmlParser.parseReferenceState(string, list);
             sendResponse(httpExchange, string);
         } catch (IOException e) {
-            LOGGER.log(Level.ERROR, "html sending error: " + MyHtml.REFERENCE_STATE, e);
+            LOGGER.log(Level.ERROR, "html sending error: " + HTML.REFERENCE_STATE, e);
             sendErrorResponse(httpExchange, "Не удалось загрузить страницу.");
         }
     }
