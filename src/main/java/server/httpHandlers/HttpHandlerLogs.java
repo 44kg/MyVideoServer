@@ -23,14 +23,14 @@ public class HttpHandlerLogs extends MyHttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) {
-        String string = path + HttpConstants.LOGS;
+        String string = path + MyHttpHandler.LOGS;
         if (new File(string).exists()) {
             try {
-                File logPath = new File(path + HttpConstants.LOGS);
+                File logPath = new File(path + MyHttpHandler.LOGS);
                 File zipFile = new File(path + Main.FILE_LOG + ".zip");
                 createZipLog(logPath, zipFile);
 
-                httpExchange.getResponseHeaders().add(HttpConstants.CONTENT_TYPE_KEY, HttpConstants.CONTENT_TYPE_VALUE);
+                httpExchange.getResponseHeaders().add(MyHttpHandler.CONTENT_TYPE_KEY, MyHttpHandler.CONTENT_TYPE_VALUE);
                 httpExchange.sendResponseHeaders(200, zipFile.length());
                 StreamHandler.transmitData(new FileInputStream(zipFile), httpExchange.getResponseBody());
             }

@@ -56,7 +56,6 @@ public class ServerState {
         clients = CommandParser.parseNumberOfConnections(response, CommandParser.PORT_FOR_CLIENTS);
 
         saveToDatabase();
-        LOGGER.log(Level.TRACE, "TRACE");
     }
 
     public void start() {
