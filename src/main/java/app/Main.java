@@ -25,7 +25,7 @@ public class Main {
 
         try {
             HttpServer server = HttpServer.create();
-            DatabaseService dbs = new DatabaseService(args[3], args[4], args[5], args[6]);
+            DatabaseService dbs = new DatabaseService(args[3], args[5], args[6]);
             ServerState serverState = new ServerState(dbs, path, Integer.parseInt(args[2]));
             server.bind(new InetSocketAddress(Integer.parseInt(args[1])), 0);
 

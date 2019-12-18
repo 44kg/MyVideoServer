@@ -34,8 +34,8 @@
     </table>
     <p><b>Статистика:</b></p>
     <form action="../statistics" method="post">
-        <p>От:<input type="date" name="date_start" value="$dates"><br>
-        До:<input type="date" name="date_end" value="$dates"><br>
+        <p>От:<input type="date" name="date_start" value="$dates"><input type="time" name="time_start" value="00:00"><br>
+        До:<input type="date" name="date_end" value="$dates"><input type="time" name="time_end" value="23:59"><br>
         <button type="submit">Получить отчет</button></p>
     </form>
     <p><button><a href="../reference_state">Назначить референсные значения</a></button></p>

@@ -32,12 +32,12 @@ public class HttpHandlerReferenceState extends MyHttpHandler {
             for (int i = 0; i < parts.length; i++) {
                 parts[i] = parts[i].substring(parts[i].indexOf("=") + 1);
             }
-            float cpuLoadRef = Float.parseFloat(parts[0]);
-            float freeSpaceRef = Float.parseFloat(parts[1]);
-            float archiveSizeRef = Float.parseFloat(parts[2]);
+            int cpuLoadRef = Integer.parseInt(parts[0]);
+            int freeSpaceRef = Integer.parseInt(parts[1]);
+            int archiveSizeRef = Integer.parseInt(parts[2]);
             int clientsRef = Integer.parseInt(parts[3]);
             int camerasRef = Integer.parseInt(parts[4]);
-            dbs.updateState(0, cpuLoadRef, freeSpaceRef, archiveSizeRef, clientsRef, camerasRef);
+            dbs.updateReferences(cpuLoadRef, freeSpaceRef, archiveSizeRef, clientsRef, camerasRef);
             serverState.readReferences();
         }
 

@@ -59,7 +59,6 @@ public class ServerState {
     }
 
     public void start() {
-        update();
         readReferences();
         Thread thread = new Thread(() -> {
             while (true) {
@@ -75,12 +74,12 @@ public class ServerState {
     }
 
     public void readReferences() {
-        List<String> ref = readReferenceStates();
-        cpuLoadRef = ref.get(2);
-        freeSpaceRef = ref.get(3);
-        archiveSizeRef = ref.get(4);
-        clientsRef = ref.get(5);
-        camerasRef = ref.get(6);
+        List<String> ref = dbs.selectReferences();
+        cpuLoadRef = ref.get(0);
+        freeSpaceRef = ref.get(1);
+        archiveSizeRef = ref.get(2);
+        clientsRef = ref.get(3);
+        camerasRef = ref.get(4);
     }
 
     private void saveToDatabase() {
@@ -89,11 +88,7 @@ public class ServerState {
         float archiveSize = Float.parseFloat(this.archiveSize.substring(0, this.archiveSize.length() - 2));
         int clients = Integer.parseInt(this.clients);
         int cameras = Integer.parseInt(this.cameras);
-        dbs.insertState(cpuLoad, freeSpace, archiveSize, clients, cameras);
-    }
-
-    private List<String> readReferenceStates() {
-        return dbs.selectState(0, 0).get(0);
+        dbs.insertStates(cpuLoad, freeSpace, archiveSize, clients, cameras);
     }
 
     public String getCpuLoad() {
