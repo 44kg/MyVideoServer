@@ -1,8 +1,6 @@
 package server.httpHandlers;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import server.ServerState;
 import server.StreamHandler;
 import server.db.DatabaseService;
@@ -14,8 +12,6 @@ import java.util.List;
 public class HttpHandlerReferenceState extends MyHttpHandler {
     private DatabaseService dbs;
     private ServerState serverState;
-
-    private static final Logger LOGGER = LogManager.getLogger(HttpHandlerReferenceState.class);
 
     public HttpHandlerReferenceState(DatabaseService dbs, ServerState serverState) {
         super();

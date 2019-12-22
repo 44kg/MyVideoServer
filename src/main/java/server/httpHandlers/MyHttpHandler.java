@@ -5,10 +5,11 @@ import com.sun.net.httpserver.HttpHandler;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import server.html.HtmlParser;
 import server.html.HTML;
+import server.html.HtmlParser;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public abstract class MyHttpHandler implements HttpHandler {

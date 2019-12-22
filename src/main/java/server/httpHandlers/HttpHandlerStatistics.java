@@ -1,8 +1,6 @@
 package server.httpHandlers;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import server.ServerState;
 import server.StreamHandler;
 import server.db.DatabaseService;
@@ -17,8 +15,6 @@ public class HttpHandlerStatistics extends MyHttpHandler {
     private DatabaseService dbs;
     private ServerState serverState;
 
-    private static final Logger LOGGER = LogManager.getLogger(HttpHandlerStatistics.class);
-
     public HttpHandlerStatistics(DatabaseService dbs, ServerState serverState) {
         super();
         this.dbs = dbs;
@@ -30,27 +26,22 @@ public class HttpHandlerStatistics extends MyHttpHandler {
         String string = HTML.getHtmlAsString(HTML.STATISTICS);
         String body = StreamHandler.toString(httpExchange.getRequestBody());
         body = body.replace("%3A", ":");
-        if (!body.equals("")) {
-            String[] parts = body.split("&");
-            for (int i = 0; i < parts.length; i++) {
-                parts[i] = parts[i].substring(parts[i].indexOf("=") + 1);
-            }
-
-            Date minDate = Date.valueOf(parts[0]);
-            Time minTime = Time.valueOf(parts[1] + ":00");
-            Date maxDate = Date.valueOf(parts[2]);
-            Time maxTime = Time.valueOf(parts[3] + ":00");
-
-            List<List<String>> table = dbs.selectStates(minDate, minTime, maxDate, maxTime);
-            List<String> avgStates = dbs.getAvgStates(minDate, minTime, maxDate, maxTime);
-
-            List<String> list = serverState.getRefStates();
-
-            string = HtmlParser.parseStatistics(string, parts[0] + " " + parts[1] + " - " + parts[2] + " " + parts[3], table, avgStates, list);
+        String[] parts = body.split("&");
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = parts[i].substring(parts[i].indexOf("=") + 1);
         }
-        else {
-            string = HtmlParser.parseStatistics(string, "", null, null, null);
-        }
+
+        Date minDate = Date.valueOf(parts[0]);
+        Time minTime = Time.valueOf(parts[1] + ":00");
+        Date maxDate = Date.valueOf(parts[2]);
+        Time maxTime = Time.valueOf(parts[3] + ":00");
+
+        List<List<String>> table = dbs.selectStates(minDate, minTime, maxDate, maxTime);
+        List<String> avgStates = dbs.getAvgStates(minDate, minTime, maxDate, maxTime);
+
+        List<String> list = serverState.getRefStates();
+
+        string = HtmlParser.parseStatistic(string, parts[0] + " " + parts[1] + " - " + parts[2] + " " + parts[3], table, avgStates, list);
         sendResponse(httpExchange, string);
     }
 }

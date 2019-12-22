@@ -1,8 +1,7 @@
 # MyVideoServer
 
-Maven package =>
-в параметры при запуске jar передать директорию, порт и интервал обновления состояния (в секундах)
+Параметры: директория, порт, обновление состояния (сек), база данных, юзер (бд), пароль (бд)  
 
-например: /home/user/stn/stn-videoserver 8080 30 или /usr/local/stn/stn-videoserver 1234 5
+например: /home/mainkaif/stn/stn-videoserver 8080 30 jdbc:postgresql://localhost:5432/test_db mainkaif 11111
 
-states_db.tar - дамп таблицы
+/test_db.tar - дамп таблицы

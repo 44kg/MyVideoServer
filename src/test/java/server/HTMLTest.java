@@ -12,7 +12,7 @@ public class HTMLTest {
 
     @Test
     public void getHtmlAsStringTest2() {
-        Assert.assertEquals("", HTML.getHtmlAsString("Any String"));
+        Assert.assertNull(HTML.getHtmlAsString("Any String"));
     }
 
     @Test

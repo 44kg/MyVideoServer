@@ -3,6 +3,7 @@ package server.html;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+
 import java.sql.Date;
 
 import java.util.List;
@@ -39,48 +40,34 @@ public class HtmlParser {
         return html.replace(HTML_REPLACE_ERROR_INFO, errorInfo);
     }
 
-    public static String parseStatistics(String html, String dates, List<List<String>> table, List<String> avgStates, List<String> refStates) {
-        if (html == null) {
-            return null;
-        }
-        else {
-            StringBuilder tableHtml = new StringBuilder();
-            if (table.size() > 0 && avgStates.size() == 5 && refStates.size() == 5) {
-                for (List<String> parts : table) {
-                    tableHtml.append("<tr>");
-                    for (int i = 0; i < parts.size(); i++) {
-                        tableHtml.append("<td align=\"center\" width=150><small>");
-                        if (i >= 2) {
-                            if (isOutOfRef(parts.get(i), refStates, i - 2)) {
-                                tableHtml.append("<font color=\"red\">");
-                            }
-                        }
-                        tableHtml.append(parts.get(i));
-                        if (i >= 2) {
-                            if (isOutOfRef(parts.get(i), refStates, i - 2)) {
-                                tableHtml.append("</font>");
-                            }
-                        }
-                        tableHtml.append("</small></td>");
-
-                    }
-                    tableHtml.append("</tr>");
-                }
-                return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
+    public static String parseStatistic(String html, String dates, List<List<String>> table, List<String> avgStates, List<String> refStates) {
+        if (html == null) return null;
+        if (dates == null || table == null || avgStates == null || refStates == null || table.size() == 0 ||
+                table.get(0).size() != 6 || avgStates.size() != 5 || refStates.size() != 5) return html;
+        createHtmlTable(table, refStates);
+        StringBuilder tableHtml = new StringBuilder();
+        for (List<String> line : table) {
+            tableHtml.append("<tr>");
+            for (String value : line) {
+                tableHtml.append(value);
             }
-            else {
-                LOGGER.log(Level.WARN, "Wrong arguments for parsing " + HTML.STATISTICS);
-                return html;
-            }
+            tableHtml.append("</tr>");
         }
+        return pasteNumberedList(html, avgStates).replace(HTML_REPLACE_DATES, dates).replace(HTML_REPLACE_TABLE, tableHtml.toString());
     }
 
-    private static boolean isOutOfRef(String value, List<String> refValues, int index) {
-        if (index == 1) {
-            return Float.parseFloat(value) < Float.parseFloat(refValues.get(index));
-        }
-        else {
-            return Float.parseFloat(value) > Float.parseFloat(refValues.get(index));
+    private static void createHtmlTable(List<List<String>> table, List<String> refStates) {
+        float value;
+        float refValue;
+        for (List<String> line : table) {
+            line.set(0, "<td align=\"center\" width=150><small><font color=\"black\">" + line.get(0) + "</font></small></td>");
+            for (int i = 1; i < line.size(); i++) {
+                value = Float.parseFloat(line.get(i));
+                refValue = Float.parseFloat(refStates.get(i - 1));
+                line.set(i, "<td align=\"center\" width=150><small><font color=\"black\">" + line.get(i) + "</font></small></td>");
+                if (value > refValue && i != 2) line.set(i, line.get(i).replace("black", "red"));
+                if (value < refValue && i == 2) line.set(i, line.get(i).replace("black", "red"));
+            }
         }
     }
 
